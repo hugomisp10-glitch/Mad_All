@@ -86,7 +86,11 @@ const gl=a=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponen
 const DAYS=[
 ['d1','Dia 1 · Qui 12','Funchal a pé · sem carro','Chegada e Funchal a pé',[
 ['transport','9:00','Aterragem — Aeroporto Cristiano Ronaldo (FNC)','Chegada às ~9h. Contem 20–25 min para bagagem.'],
-['transport','9:45','Aeroporto → Funchal','Sem carro: Aerobus/autocarro (~35 min) ou táxis. Com 12 pessoas: reservar 2 transfers/minivans de 8 lugares (ou 3 táxis) com antecedência.'],
+['transport','9:45','✅ Recomendado: transfer reservado','Motorista à espera na chegada, 2 viaturas de 7–9 lugares (uma por grupo), 2 cadeirinhas cada. 20–30 min. Um guia online indica uma van de 6 lugares por ~39€ (a confirmar).'],
+['transport','9:45','Alternativa 1: táxis oficiais','Praça de táxis no piso 0, à saída das chegadas, 24 h. Cada grupo de 6 precisa de um táxi grande (7–8 lugares). Táxi normal ~25–35€, o grande custa mais: confirmem o preço antes de partir. Cadeirinhas não garantidas.'],
+['transport','9:45','Alternativa 2: Bolt (app de TVDE)','A Bolt é a plataforma ativa na Madeira; a Uber não está garantida (uma notícia refere que o regresso foi recusado). Peçam carros XL de 6 lugares, nem sempre disponíveis. O preço varia com a procura e as cadeirinhas não estão garantidas. Instalem a app antes de viajar.'],
+['transport','9:45','Alternativa 3: Aerobus 113','Adultos ~5€. Crianças: pela regra geral (regulamento de 2012), até aos 5 anos não pagam se não ocuparem lugar e dos 6 aos 12 pagam meia tarifa; confirmar se o Aerobus aplica o mesmo. 30–45 min, cerca de 25 paragens incluindo o centro histórico. A paragem fica na estrada em frente ao aeroporto (ER101), a 5–10 min a pé, e o sentido Funchal é do lado oposto. Só se levarem pouca bagagem.'],
+['transport','9:45','Alternativa 4: autocarros de linha (20, 53, 78, 113, 156)','Adultos ~2,50–3€ por viagem; crianças: ver regra acima (a confirmar). 30–45 min, pagamento ao motorista. Mesma paragem da ER101. Espaço limitado para malas e carrinhos: evitem com crianças pequenas.'],
 ['','10:30','Largar malas no alojamento','Se o check-in for só à tarde, peçam para guardar as malas.'],
 ['','11:00','Mercado dos Lavradores','Frutas tropicais, flores e peixe. Melhor de manhã (seg–sáb).'],
 ['','12:00','Zona Velha & Rua de Santa Maria','Portas pintadas e ruelas junto ao porto.'],
@@ -100,7 +104,7 @@ const DAYS=[
 ['','21:30','Poncha na Zona Velha','Hoje ninguém conduz: aproveitem.']]],
 ['d2','Dia 2 · Sex 13','Costa Sul & Oeste · com carro','Falésias, piscinas naturais e planalto',[
 ['','8:15','Pequeno-almoço rápido','O carro é levantado às 9h00.'],
-['transport','9:00','Levantamento do carro','Confirmar o local (Funchal ou aeroporto), seguro, depósito e fotos do carro. Com 12 pessoas: 2 carrinhas de 9 lugares (ou 3 carros). Atenção à bagagem e a quem conduz.'],
+['transport','9:00','Levantamento do carro','Confirmar o local (Funchal ou aeroporto), seguro, depósito e fotos do carro. Dois grupos de 6 (4 adultos + 2 crianças cada): 1 carrinha de 7–9 lugares por grupo. Atenção à bagagem e a quem conduz.'],
 ['transport','9:45','Funchal → Câmara de Lobos','~15 min.'],
 ['','10:15','Câmara de Lobos','Porto de pescadores que Churchill pintou.'],
 ['','10:45','🌊 Cabo Girão — Skywalk','Falésia de ~580 m com plataforma de vidro.'],
@@ -133,7 +137,11 @@ const DAYS=[
 ['','11:00','Blandy\'s Wine Lodge (se aberto)','Visita e prova. Confirmar ao domingo; alternativa: Museu CR7.'],
 ['','12:00','Últimas lembranças','O Mercado pode estar fechado ao domingo (confirmar). Lojas da Zona Velha e Av. Arriaga.'],
 ['food','12:30','Almoço final','Zona Velha ou marina.'],
-['transport','13:45','Funchal → Aeroporto','Sem carro: Aerobus/autocarro (~35 min) ou transfer/3 táxis para 12 pessoas. Reservar com antecedência.'],
+['transport','13:45','✅ Recomendado: transfer reservado','Recolha no alojamento às 13h45, 2 viaturas (uma por grupo) com cadeirinhas, 20–30 min. Chegada ao aeroporto cerca de 14h15 (2h antes do voo).'],
+['transport','13:45','Alternativa 1: táxis','Peçam ao alojamento ou reservem 2 táxis grandes. Confirmem o preço e as cadeirinhas.'],
+['transport','13:30','Alternativa 2: Bolt','Peçam às 13h30: no domingo pode haver menos motoristas. Carros XL de 6 lugares nem sempre disponíveis.'],
+['transport','13:15','Alternativa 3: Aerobus 113 desde o centro','Adultos ~5€; crianças: ver Dia 1 (a confirmar). 30–45 min, com várias paragens no Funchal. Saiam por volta das 13h15 para chegarem cerca de 14h30. Atenção à bagagem.'],
+['transport','13:15','Alternativa 4: autocarros de linha','Adultos ~2,50–3€ por viagem; crianças a confirmar. Paragem na ER101 à saída do aeroporto. Espaço limitado para malas.'],
 ['','14:30','Aeroporto','Check-in e segurança com folga.'],
 ['','16:40','✈️ Descolagem','Bom regresso!']]]];
 
@@ -429,7 +437,7 @@ const blk=`<div class="blk" style="margin:0 0 14px"><h3 style="font-size:15px">�
 document.addEventListener('click',e=>{const b=e.target.closest('.bgm');if(b)window.__bgm(+b.dataset.t)});upd();})();
 </script><script>
 (()=>{const row=(a,b)=>`<div class="pc"><div><div class="pn">${a}</div><div class="pd">${b}</div></div></div>`;
-const L=[['Transporte','12 pessoas = 2 carrinhas de 9 lugares (8 passageiros + condutor) ou 3 carros. Reservem cedo: carrinhas esgotam. Definam 2 a 3 condutores e quem não bebe.'],['Bagagem','Duas carrinhas cheias de pessoas têm pouco espaço para malas: confirmem a bagagem ao reservar.'],['Dois carros, um grupo','Partilhem a localização no WhatsApp, combinem pontos de encontro e horas fixas, e façam as paragens ao mesmo tempo.'],['Restaurantes','Reservem mesa para 12 em todos os jantares e almoços grandes. Alguns locais só aceitam grupos com menu fechado: perguntem. Peçam pratos para partilhar (espetada).'],['Entradas e atividades','Perguntem por tarifa de grupo (teleférico, Monte Palace, Skywalk) e reservem. Carros de cesto: 2 pessoas por cesto, ou seja 6 cestos.'],['Levadas','Grupos grandes devem caminhar juntos, com alguém na frente e outro no fim. Levem lanternas e confirmem se o percurso precisa de reserva.'],['Alojamento','Verifiquem camas, casas de banho e estacionamento para 2 viaturas; check-in a 12 de novembro e check-out a 15.'],['Dinheiro','Usem o registo de despesas do separador Grupo: ele divide por 12 e diz quem paga a quem.'],['Se alguém se separar','Combinem de antemão um ponto de encontro e o plano B (por exemplo o alojamento), e guardem os contactos de todos.']];
+const L=[['Transporte','Dois grupos de 6 (4 adultos + 2 crianças): uma carrinha de 7 a 9 lugares por grupo, porque um carro de 5 lugares não chega. Reservem cedo, porque as carrinhas esgotam. Definam o condutor de cada grupo e quem não bebe.'],['Bagagem','Cada carrinha com 6 pessoas e malas fica apertada: confirmem a bagagem ao reservar.'],['Dois grupos, duas carrinhas','Partilhem a localização no WhatsApp, combinem pontos de encontro e horas fixas, e façam as paragens ao mesmo tempo.'],['Restaurantes','Reservem mesa para 12 em todos os jantares e almoços grandes. Alguns locais só aceitam grupos com menu fechado: perguntem. Peçam pratos para partilhar (espetada).'],['Entradas e atividades','Perguntem por tarifa de grupo (teleférico, Monte Palace, Skywalk) e reservem. Carros de cesto: 2 pessoas por cesto, ou seja 6 cestos.'],['Levadas','Grupos grandes devem caminhar juntos, com alguém na frente e outro no fim. Levem lanternas e confirmem se o percurso precisa de reserva.'],['Alojamento','Verifiquem camas, casas de banho e estacionamento para 2 viaturas; check-in a 12 de novembro e check-out a 15.'],['Dinheiro','Usem o registo de despesas do separador Grupo: ele divide por 12 e diz quem paga a quem.'],['Se alguém se separar','Combinem de antemão um ponto de encontro e o plano B (por exemplo o alojamento), e guardem os contactos de todos.']];
 const h=`<div class="blk"><h3>👥 Logística para 12 pessoas</h3><div class="pl">${L.map(x=>row(x[0],x[1])).join('')}</div></div>`;
 const t=document.querySelector('#grupo .blk');if(t)t.insertAdjacentHTML('beforebegin',h)})();
 if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
@@ -438,7 +446,7 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventLi
 (()=>{const K=[
 ['k1','Dia 1 · Qui 12','Funchal a pé, ritmo calmo',[
 ['transport','9:00','Aterragem no aeroporto do Funchal','Peçam cadeirinhas ao transfer. Levem snacks, água e uma muda de roupa nas malas de mão.'],
-['transport','9:45','Aeroporto → Funchal','Transfer/minivans reservados com cadeirinhas (12 pessoas).'],
+['transport','9:45','Aeroporto → Funchal','Transfer reservado com cadeirinhas (2 viaturas, uma por grupo). Alternativas: táxis, Bolt, Aerobus 113 e autocarros de linha (ver Dia 1).'],
 ['','10:30','Largar malas no alojamento','Se o quarto ainda não estiver pronto, peçam um espaço para as crianças descansarem.'],
 ['','11:00','Parque de Santa Catarina ou Jardim Municipal','Espaço para brincar depois da viagem. Confirmar horário.'],
 ['food','12:15','Almoço cedo (12h15)','Zona Velha: peçam meias doses, bolo do caco e sopa.'],
@@ -448,7 +456,7 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventLi
 ['','18:00','Marina ao pôr do sol','Passeio curto, perto do alojamento.'],
 ['food','19:15','Jantar cedo','Reservar mesa para 12 com cadeiras altas para os mais pequenos.']]],
 ['k2','Dia 2 · Sex 13','Costa Sul · com carro · menos estrada',[
-['transport','9:00','Levantamento do carro','Confirmar as cadeirinhas instaladas e fixas antes de sair (2 carrinhas de 9 lugares ou 3 carros).'],
+['transport','9:00','Levantamento do carro','Confirmar as cadeirinhas instaladas e fixas antes de sair (uma carrinha de 7–9 lugares por grupo, com 2 cadeirinhas cada).'],
 ['transport','9:45','Funchal → Câmara de Lobos','~15 min. Porto de pescadores, pausa para fotos.'],
 ['','10:30','🌊 Cabo Girão — Skywalk','Crianças sempre pela mão, junto às grades.'],
 ['transport','11:45','→ Ribeira Brava','~20 min. Paredão e pausa de pernas.'],
@@ -474,7 +482,7 @@ if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventLi
 ['','10:45','Marina e Museu CR7','Visita curta. Confirmar horário ao domingo.'],
 ['food','12:00','Almoço final cedo','Zona Velha ou marina.'],
 ['','12:45','Descanso e malas','Preparar snacks e brinquedos para o voo.'],
-['transport','13:45','Funchal → Aeroporto','Transfer/minivans com cadeirinhas, reservado.'],
+['transport','13:45','Funchal → Aeroporto','Transfer reservado com cadeirinhas. Alternativas: ver Dia 4.'],
 ['','14:30','Aeroporto','Check-in com folga.'],
 ['','16:40','✈️ Descolagem','Bom regresso!']]]];
 const tips=['Cadeirinhas: crianças com menos de 12 anos e menos de 135 cm precisam de cadeirinha adequada. Peçam-nas ao rent-a-car e ao transfer.','Enjoo: paragens a cada 45–60 min, sacos e snacks leves. Perguntem na farmácia o que é seguro para a idade.','Pontos fracos para esta idade: levadas com precipício e o Pico do Arieiro. Se o dia estiver limpo, só o miradouro e com muito cuidado.','Comida: meias doses, bolo do caco, sopa e sumos tropicais. Poncha só para adultos.','Funchal tem ruas íngremes e calçada: levem porta-bebés ou carrinho leve.','Guardem a morada do hospital do Funchal e a medicação habitual das crianças.'];
@@ -487,4 +495,13 @@ const b=document.createElement('button');b.className='tab';b.dataset.p='criancas
 ['d1','d2','d3','d4'].forEach(id=>{const t=document.querySelector('#'+id+' .tl');if(t)t.insertAdjacentHTML('beforebegin','<button class="gob" data-go="criancas" style="margin:0 0 12px">👶 Com crianças? Ver roteiro alternativo →</button>')});
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)document.querySelector('.tab[data-p='+g.dataset.go+']').click()});
 })();
+</script><script>
+/* ---- Aeroporto ↔ Funchal: opções para 12 pessoas ---- */
+(()=>{const row=(a,b,c)=>`<div class="pc"><div><div class="pn">${a}</div><div class="pd">${b}</div></div>${c?`<span class="pp">${c}</span>`:''}</div>`;
+const O=[['✅ Transfer privado reservado (recomendado)','Preço fechado, motorista à espera com o voo monitorizado, 20–25 min. Para 2 grupos de 6 (4 adultos + 2 crianças cada): 2 viaturas de 7–9 lugares, com 2 cadeirinhas cada.','carro ~25–40€; 7–9 lugares: pedir orçamento'],['Táxis oficiais','Praça de táxis no piso 0, na zona de chegadas. Cada grupo de 6 precisa de um táxi grande (7–8 lugares), mais caro: pedir ou reservar. Confirmem o preço antes de partir; cadeirinhas não garantidas. 18–30 min.','~25–35€ por táxi normal; grande: mais'],['Aerobus 113','Autocarro da linha Aerobus, 30–45 min, desde o aeroporto. Há autocarros elétricos novos com 60 lugares e espaço para bagagem, mas o espaço para malas grandes e carrinhos é limitado.','~5€ por adulto; crianças a confirmar (~45–60€)'],['Bolt (app de TVDE)','Plataforma ativa na Madeira. A Uber não está garantida. Há relatos de ~14€ ao Funchal, mas nem sempre há carros de 6 lugares nem cadeirinhas.','~14€ (relato)'],['Autocarros de linha (20, 53, 78, 113, 156)','Paragem na ER101, em frente ao aeroporto. Espaço limitado para malas.','~2,50–3€ por adulto; crianças a confirmar'],['Autocarro privado para grupos','Um operador indica autocarro privado para grupos grandes. Só compensa com muitas malas.','desde ~209€'],['Carro alugado no aeroporto','O levantamento é só a 13 nov, por isso não compensa no dia 1.','']];
+const Q=['Lugares e bagagem para 2 grupos de 6 pessoas','Cadeirinhas para 4 crianças (2 de 3 anos), com peso e idade','Preço final com portagens e gorjeta','Tempo de espera gratuito e monitorização do voo','Contacto do motorista e ponto de encontro','Cancelamento gratuito'];
+const h=`<div class="blk"><h3>✈️ Aeroporto ↔ Funchal: melhores opções</h3><p class="lead">Chegada à quinta às 9h00; regresso ao domingo, recolha às 13h45 para o voo das 16h40.</p><div class="pl">${O.map(x=>row(x[0],x[1],x[2])).join('')}</div>
+<h4>O que perguntar ao fornecedor</h4><ul>${Q.map(q=>`<li>${q}</li>`).join('')}</ul>
+<div class="note">Dicas: usem só os táxis da praça oficial, no piso 0. Confirmem o preço antes de partir. Reservem a ida e a volta com antecedência. No domingo, cheguem ao aeroporto cerca de 2 horas antes do voo. Valores indicativos de guias e operadores, a confirmar.</div></div>`;
+const t=document.querySelector('#planear .blk');if(t)t.insertAdjacentHTML('beforebegin',h)})();
 </script></body></html>
