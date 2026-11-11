@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-PT"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Madeira — Guia da Viagem · 12–15 Nov 2026</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌺%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+:root{--n:#0e1f22;--cr:#fdfaf3;--g:#f0c46f;--o:#1f5e78;--b:#c3564f;--p:#3f7a5c;--ink:#20241d;--mu:#cfe0dd}
+*{box-sizing:border-box}body{margin:0;background:var(--n);color:#f3f1e6;font:15px/1.55 system-ui,sans-serif;padding-bottom:60px}
+h1,h2,h3{font-family:Georgia,serif}a{color:var(--g)}
+.hero{padding:34px 18px 24px;background:linear-gradient(160deg,#072b45,#0d5c73 55%,#1f7f6b)}
+.hero h1{margin:0 0 8px;font-size:clamp(28px,7vw,40px)}.hero em{color:var(--g)}.hero p{margin:0 0 12px;color:#e8efe9;font-size:14px}
+#cd{display:inline-block;background:#0006;border-radius:99px;padding:6px 14px;font-size:13px}
+.tabs{position:sticky;top:0;z-index:50;background:var(--n);display:flex;gap:8px;overflow-x:auto;padding:12px 14px;scrollbar-width:none}
+.tab{flex:none;border:1px solid #fff3;background:#ffffff0d;color:#fff;border-radius:99px;padding:9px 15px;font:700 13px system-ui;min-height:40px}
+.tab.on{background:var(--g);color:#2b1c07;border-color:var(--g)}
+.panel{display:none;max-width:780px;margin:0 auto;padding:6px 14px 30px}.panel.on{display:block}
+.panel>h2{margin:8px 0 4px}.lead{color:var(--mu);font-size:13.5px;margin:0 0 14px}
+.tl{border-left:2px solid #dba24a88;padding-left:18px;margin-left:6px}
+.card{position:relative;background:var(--cr);color:var(--ink);border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.card::before{content:"";position:absolute;left:-26px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--g);border:2px solid var(--n)}
+.card.transport::before{background:#9dc7d8}.card.food::before{background:var(--b)}
+.card.done{opacity:.5}.card .r{display:flex;gap:8px;align-items:center}
+.t{font:700 15px Georgia,serif;color:var(--o)}.ti{font-weight:700;flex:1}.card p{margin:5px 0 0;font-size:13.5px;color:#4a4736}
+.ck{flex:none;width:26px;height:26px;border-radius:7px;border:2px solid var(--p);background:#fff;color:var(--p);display:grid;place-items:center;font-weight:900;cursor:pointer}
+.ck.on{background:var(--p);color:#fff}
+.blk{background:#ffffff10;border:1px solid #fff2;border-radius:14px;padding:14px;margin-bottom:14px}
+.blk h3{margin:0 0 8px;color:var(--g);font-size:17px}.blk h4{margin:12px 0 6px;color:var(--g);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+.pl{background:var(--cr);color:var(--ink);border-radius:12px;overflow:hidden}
+.pc{display:flex;gap:10px;padding:11px 12px;border-bottom:1px solid #ece0c5}.pc:last-child{border:0}
+.pc div{flex:1;min-width:0}.pn{font-weight:700;font-size:14.5px}.pd{font-size:13px;color:#4a4736}.pg{font-size:12px;color:var(--o)}.pg a{color:var(--o);font-weight:700}
+.pp{font-size:12px;font-weight:700;color:var(--b);white-space:nowrap}
+.sw{display:flex;gap:8px;margin-bottom:12px}.sw button{flex:1;padding:10px;border-radius:11px;border:1px solid #fff3;background:#ffffff0d;color:#fff;font-weight:700}.sw button.on{background:var(--g);color:#2b1c07}
+.fp{display:none}.fp.on{display:block}
+.note{background:#dba24a24;border:1px solid #dba24a66;border-radius:11px;padding:10px 12px;font-size:13px;color:#fbe6b8;margin-top:10px}
+textarea{width:100%;min-height:100px;border-radius:12px;border:1px solid #fff3;background:#ffffff14;color:#fff;padding:10px;font:inherit}
+.rb{background:#a33a4733;border:1px solid #a33a4766;color:#f2b3ae;border-radius:99px;padding:7px 13px;font-weight:700;font-size:12px}
+/* mapa 3D */
+#mw{position:relative;height:74vh;min-height:420px;border-radius:14px;overflow:hidden;background:#9bd4f5}#map{position:absolute;inset:0}
+#q{width:100%;padding:11px 13px;border:0;border-radius:12px;font:16px system-ui;margin-bottom:8px;color:#12302a}
+#res{display:none;background:#fff;color:#12302a;border-radius:12px;margin:-4px 0 8px;max-height:220px;overflow:auto}#res div{padding:10px 14px;border-bottom:1px solid #eee;cursor:pointer}
+.chs{display:flex;gap:6px;overflow-x:auto;margin-bottom:8px;scrollbar-width:none}.ch{flex:none;min-height:38px;border:1px solid #fff4;background:#ffffff18;color:#fff;border-radius:99px;padding:5px 12px;font-size:13px}.ch.on{background:#fff;color:#0d5c73}
+.tools{position:absolute;right:10px;top:10px;z-index:4;display:flex;flex-direction:column;gap:8px}
+.tools button{width:44px;height:44px;border:0;border-radius:13px;background:#fffe;box-shadow:0 3px 10px #0004;font-size:18px}.tools button.on{background:#0d5c73;color:#fff}
+.mk{display:flex;flex-direction:column;align-items:center;cursor:pointer}.mk i{font-style:normal;position:relative;width:34px;height:34px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;font-size:17px;box-shadow:0 3px 8px #0006}
+.mk b{display:none;font-size:11px;background:#fffe;color:#12302a;border-radius:8px;padding:1px 6px;margin-top:2px;white-space:nowrap}.mk.lb b{display:block}.mk.h{display:none}
+.mk.vis i{box-shadow:0 0 0 4px #2fbf71,0 3px 8px #0006}
+#sh{position:absolute;left:8px;right:8px;bottom:8px;z-index:6;max-height:60%;overflow:auto;background:#fff;color:#12302a;border-radius:20px;box-shadow:0 10px 40px #0007;padding:14px 16px;transform:translateY(120%);transition:transform .25s}#sh.o{transform:none}
+#sh h3{margin:0 28px 6px 0;color:#0d5c73}#sh p{margin:.4em 0}#sh a,#sh button.b{display:inline-block;margin:4px 6px 0 0;border:0;border-radius:11px;padding:9px 13px;font:600 13.5px system-ui;text-decoration:none;background:#0d5c73;color:#fff}
+#x{position:absolute;right:10px;top:8px;border:0;background:#0001;border-radius:50%;width:30px;height:30px}
+.maplibregl-ctrl-bottom-left{bottom:0}
+select.sel{width:100%;padding:10px;border-radius:10px;margin-bottom:8px;font:15px system-ui}
+#il{position:fixed;inset:0;height:100dvh;z-index:100;background:#7fd0e8;display:none;touch-action:none}#il.o{display:block}
+#is{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+#is .nm{opacity:0}#is.z2 .nm,#is .nm.bg{opacity:1}#is:not(.z2) .mn{display:none}
+.nm{font:800 13px "Trebuchet MS",system-ui,sans-serif;fill:#0b3d4d;paint-order:stroke;stroke:#fffbea;stroke-width:4px;stroke-linejoin:round}
+#ih{position:absolute;left:0;right:0;top:0;z-index:3;padding:max(10px,env(safe-area-inset-top)) 12px 12px;text-align:center;pointer-events:none;background:linear-gradient(#0d5c73ee,#0d5c7300)}
+#ih h2{margin:0 0 4px;font:700 clamp(26px,7vw,40px) Georgia,serif;color:#fff;text-shadow:0 2px 6px #0007}
+#ih small{display:inline-block;color:#fff;background:#072b45aa;border-radius:12px;padding:2px 12px;margin:2px 3px 6px;font-weight:600}
+#itb{pointer-events:auto;display:flex;gap:8px;justify-content:center}#itb button{border:0;background:#ffffffd0;color:#0d5c73;border-radius:99px;padding:8px 20px;min-height:40px;font:600 14px system-ui}#itb button.on{background:#ff7a59;color:#fff}
+#ic{position:absolute;z-index:3;right:10px;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
+#ic button{border:0;border-radius:14px;min-width:48px;height:48px;background:#fffe;box-shadow:0 3px 12px #0004;font:600 17px system-ui;color:#0d5c73}#ic button.on,.tools button.on{background:#2fbf71;color:#fff}
+.p{cursor:pointer}.p .bc{fill:#fff}.p .bt{font:800 11px system-ui;fill:#d9482b}.p.v .bc{fill:#2fbf71}.p.v .bt{fill:#fff}
+#ik{position:absolute;z-index:4;left:10px;right:70px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:480px;background:#fffaf0;color:#12302a;border:3px solid #0d5c73;border-radius:20px;padding:12px 15px;box-shadow:0 10px 40px #0007;transform:translateY(150%);transition:transform .25s}#ik.o{transform:none}
+#ik h3{margin:0 30px 6px 0;font:800 20px Georgia,serif;color:#0d5c73}#ik p{margin:.3em 0}#kx{position:absolute;right:10px;top:8px;border:0;background:#0001;border-radius:50%;width:30px;height:30px}
+.vbtn{display:block;width:100%;margin:7px 0 0;padding:11px;border:0;border-radius:13px;font:700 15px system-ui;background:#e0ebe8;color:#12302a}.vbtn.v{background:#2fbf71;color:#fff}.vbtn.g{background:#0d5c73;color:#fff}
+.dp{width:100%;height:150px;object-fit:cover;border-radius:14px;margin:6px 0 12px;display:block}.pg2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}.pg2 img{width:100%;height:110px;object-fit:cover;border-radius:10px}
+.gob,.bgm{border:1px solid #fff3;background:#ffffff14;color:#fff;border-radius:99px;padding:9px 14px;font:700 13px system-ui;margin:4px 6px 0 0;min-height:40px}.bgm.on{background:var(--g);color:#2b1c07}
+footer{text-align:center;color:#7d9296;font-size:11.5px;padding:20px}
+</style></head><body>
+<div class="hero"><div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--g);font-weight:700">Grupo · Madeira, Portugal</div>
+<h1>Ilha da <em>Madeira</em><br>de Norte a Sul, com 2 dias de carro</h1>
+<p>Guia 12–15 novembro 2026 · chegada FNC 9h00 · partida 16h40 · carro só a 13 e 14 nov (9h00–19h00)</p><div id="cd">🌺 …</div></div>
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+<footer>Datas, horários, preços e moradas a reconfirmar mais perto da viagem.<br>Fotos: Wikimedia Commons (CC BY-SA) · Mapas: OpenFreeMap / OpenStreetMap · Google Maps</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const $=i=>document.getElementById(i),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S={v:{},notes:''};try{S=Object.assign(S,JSON.parse(localStorage.getItem('madeira-2026')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('madeira-2026',JSON.stringify(S))}catch(e){}};
+const gl=a=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a);
+
+// dias: [tipo,hora,título,descrição]
+const DAYS=[
+['d1','Dia 1 · Qui 12','Funchal a pé · sem carro','Chegada e Funchal a pé',[
+['transport','9:00','Aterragem — Aeroporto Cristiano Ronaldo (FNC)','Chegada às ~9h. Contem 20–25 min para bagagem.'],
+['transport','9:45','Aeroporto → Funchal','Sem carro: Aerobus/autocarro (~35 min) ou táxis. Com 12 pessoas: reservar 2 transfers/minivans de 8 lugares (ou 3 táxis) com antecedência.'],
+['','10:30','Largar malas no alojamento','Se o check-in for só à tarde, peçam para guardar as malas.'],
+['','11:00','Mercado dos Lavradores','Frutas tropicais, flores e peixe. Melhor de manhã (seg–sáb).'],
+['','12:00','Zona Velha & Rua de Santa Maria','Portas pintadas e ruelas junto ao porto.'],
+['food','12:45','Almoço de grupo','Zona Velha: petiscos e marisco.'],
+['','14:30','⚽ Museu CR7','Visita de ~45 min junto à marina. Confirmar horário e preço.'],
+['','15:45','🚡 Teleférico Funchal → Monte','~15 min com vista sobre a baía. Último bilhete cedo: ver horário.'],
+['','16:20','Monte Palace Tropical Garden','Jardins e azulejos, ~1h.'],
+['','17:30','Descida: carro de cesto (opcional) ou teleférico','O teleférico fecha às 17h45; anoitece às 18h09.'],
+['','18:15','Passeio na marina ao pôr do sol','Sem carro, sem pressa.'],
+['food','20:00','Jantar','Espetada madeirense para o primeiro jantar.'],
+['','21:30','Poncha na Zona Velha','Hoje ninguém conduz: aproveitem.']]],
+['d2','Dia 2 · Sex 13','Costa Sul & Oeste · com carro','Falésias, piscinas naturais e planalto',[
+['','8:15','Pequeno-almoço rápido','O carro é levantado às 9h00.'],
+['transport','9:00','Levantamento do carro','Confirmar o local (Funchal ou aeroporto), seguro, depósito e fotos do carro. Com 12 pessoas: 2 carrinhas de 9 lugares (ou 3 carros). Atenção à bagagem e a quem conduz.'],
+['transport','9:45','Funchal → Câmara de Lobos','~15 min.'],
+['','10:15','Câmara de Lobos','Porto de pescadores que Churchill pintou.'],
+['','10:45','🌊 Cabo Girão — Skywalk','Falésia de ~580 m com plataforma de vidro.'],
+['transport','11:45','→ Ribeira Brava','~20 min.'],
+['','12:15','Ribeira Brava','Paragem de pernas junto ao paredão.'],
+['food','13:00','Almoço','Ribeira Brava ou Ponta do Sol.'],
+['transport','14:00','Subida ao Paul da Serra → Porto Moniz','~1h15, planalto a ~1400 m. Atenção ao nevoeiro.'],
+['','15:15','🌊 Porto Moniz — Piscinas naturais','Levem fato de banho se estiver bom.'],
+['transport','16:30','Regresso ao Funchal','~1h15–1h30. Tentem chegar antes das 18h09 (pôr do sol).'],
+['','18:15','Chegada e estacionamento','Estacionar perto do alojamento: o carro fica até amanhã.'],
+['food','19:30','Jantar','Peixe fresco no Funchal.']]],
+['d3','Dia 3 · Sáb 14','Norte & Montanhas · com carro','Telhado da ilha, levadas e casas de colmo',[
+['','7:45','Pequeno-almoço cedo','O Arieiro tem melhor visibilidade de manhã.'],
+['transport','8:00','Funchal → Pico do Arieiro','~40 min de estrada de montanha. Ver o tempo no IPMA.'],
+['','8:45','⛰️ Pico do Arieiro','~1818 m, muitas vezes acima das nuvens. Levem casaco.'],
+['transport','9:45','→ Ribeiro Frio','~30 min.'],
+['','10:15','🥾 Levada dos Balcões','~1h ida-volta, fácil, vista para o Pico Ruivo.'],
+['food','12:00','Almoço','Truta fresca dos viveiros do Ribeiro Frio.'],
+['transport','13:15','→ Santana','~25 min.'],
+['','13:45','🏠 Santana — casas de colmo','Casas triangulares tradicionais.'],
+['transport','15:15','Santana → Camacha','~50 min.'],
+['','16:15','Camacha','Capital do vime. Confirmar horário das lojas.'],
+['transport','17:00','→ Funchal e abastecer','~25 min.'],
+['transport','18:15','Devolução do carro','A devolução é às 19h00: deixem folga para abastecer e conferir o carro.'],
+['food','19:45','Jantar','Sábado: reservar mesa para 12 pessoas.']]],
+['d4','Dia 4 · Dom 15','Funchal a pé · sem carro','Última manhã no Funchal e regresso',[
+['','8:00','Pequeno-almoço & check-out','Deixem as malas guardadas no alojamento.'],
+['','9:00','Sé do Funchal e Jardim Municipal','A pé. No domingo pode haver missa: visita discreta.'],
+['','10:00','Fortaleza de São Tiago e Palácio de São Lourenço','Junto à Zona Velha. Visitas limitadas: confirmar.'],
+['','11:00','Blandy\'s Wine Lodge (se aberto)','Visita e prova. Confirmar ao domingo; alternativa: Museu CR7.'],
+['','12:00','Últimas lembranças','O Mercado pode estar fechado ao domingo (confirmar). Lojas da Zona Velha e Av. Arriaga.'],
+['food','12:30','Almoço final','Zona Velha ou marina.'],
+['transport','13:45','Funchal → Aeroporto','Sem carro: Aerobus/autocarro (~35 min) ou transfer/3 táxis para 12 pessoas. Reservar com antecedência.'],
+['','14:30','Aeroporto','Check-in e segurança com folga.'],
+['','16:40','✈️ Descolagem','Bom regresso!']]]];
+
+// listas: [nome, descrição, morada, preço]
+const VER=[['🏙️ Funchal',[['Zona Velha & Rua de Santa Maria','Portas pintadas e ruelas','Rua de Santa Maria, Funchal'],['Mercado dos Lavradores','Frutas, flores e peixe','Rua Brigadeiro Oudinot 33, Funchal'],['Teleférico do Funchal','Funchal ↔ Monte','Caminho das Babosas 8, Funchal'],['Monte Palace Tropical Garden','Jardins e azulejos','Caminho do Monte 174, Funchal'],['Sé do Funchal','Catedral do séc. XV','Rua do Aljube, Funchal'],['Museu CR7','Junto à marina','Av. Sá Carneiro 27, Funchal']]],
+['🌊 Costa Sul & Oeste',[['Câmara de Lobos','Vila piscatória','Câmara de Lobos, Madeira'],['Cabo Girão Skywalk','Falésia de ~580 m','Cabo Girão, Madeira'],['Ribeira Brava','Forte e praia de calhau','Ribeira Brava, Madeira'],['Paul da Serra','Planalto a ~1400 m','Paul da Serra, Madeira'],['Porto Moniz — piscinas naturais','Piscinas de lava','Porto Moniz, Madeira']]],
+['⛰️ Norte & Montanhas',[['Santana — casas de colmo','Casas triangulares','Santana, Madeira'],['Ribeiro Frio & Balcões','Levada fácil','Ribeiro Frio, Madeira'],['Pico do Arieiro','~1818 m','Pico do Arieiro, Madeira'],['Camacha','Vime','Camacha, Madeira'],['Curral das Freiras & Eira do Serrado','Caldeira vulcânica','Eira do Serrado, Madeira'],['Ponta de São Lourenço','Península árida','Baía d\'Abra, Caniçal']]],
+['🏖️ Praias',[['Praia Formosa','Calhau, bares de praia','Praia Formosa, Funchal'],['Doca do Cavacas','Piscinas naturais','Doca do Cavacas, Funchal'],['Praia da Calheta','Areia dourada importada','Praia da Calheta, Madeira'],['Praia dos Reis Magos','Calhau tranquilo em Caniço','Reis Magos, Caniço']]],
+['🥾 Trilhos & levadas',[['Levada dos Balcões','~1h, fácil','Ribeiro Frio, Madeira'],['Levada das 25 Fontes','~3h, moderado, cascatas','Rabaçal, Calheta'],['Vereda da Ponta de São Lourenço','~2h30, moderado','Baía d\'Abra, Caniçal'],['Vereda do Pico Ruivo','~1h30 desde Achada do Teixeira','Achada do Teixeira, Santana'],['Levada do Caldeirão Verde','~4h, túneis e cascata','Queimadas, Santana']]]];
+
+const ECO={f:[['Taberna da Rua de Santa Maria','Petiscos madeirenses casuais','Rua de Santa Maria, Funchal','~15€'],['O Tapassol','Espetada em espeto de loureiro','Rua Imperatriz D. Amélia 65, Funchal','~16€'],['Casa da Poncha','Petiscos e poncha','Zona Velha, Funchal','~13€'],['Gavião Novo','Cozinha tradicional na Zona Velha','Rua de Santa Maria, Funchal','~18€'],['Barbusano','Espetada e pratos regionais','Rua de Santa Maria, Funchal','~18€'],['Armazém do Sabor','Petiscos e pratos madeirenses','Rua de Santa Maria, Funchal','~17€'],['Mercado dos Lavradores — zona de petiscos','Refeição rápida e fruta','Mercado dos Lavradores, Funchal','~10€']],
+x:[['Restaurante do Forte — Câmara de Lobos','Peixe simples com vista','Câmara de Lobos, Madeira','~15€'],['Almoço no Paul da Serra / Porto Moniz','Comida caseira de estrada','Porto Moniz, Madeira','~14€'],['Viveiros do Ribeiro Frio','Truta fresca','Ribeiro Frio, Madeira','~14€'],['Restaurante Cachalote — Porto Moniz','Peixe e marisco junto às piscinas','Porto Moniz, Madeira','~18€'],['Restaurante Aquário — Porto Moniz','Peixe do dia com vista','Porto Moniz, Madeira','~18€']]};
+const MED={f:[['Restaurante Kampo','Cozinha portuguesa contemporânea','Rua Simplício Passos Gouveia, Funchal','~35€'],['Akua by Madeira Fish Market','Peixe e marisco frescos','Rua Dr. Fernão Ornelas 33, Funchal','~32€'],['Restaurante Dona Amélia','Madeirense clássica','Rua Imperatriz D. Amélia 83, Funchal','~30€'],['Restaurante Armazém do Sabor','Madeirense com toque moderno','Rua de Santa Maria, Funchal','~28€'],['Restaurante Gavião Novo','Peixe e carnes regionais','Rua de Santa Maria, Funchal','~28€'],['Restaurante Barbusano','Espetada e peixe','Rua de Santa Maria, Funchal','~30€'],['Il Gallo d\'Oro (2★ Michelin)','Noite especial','Cliff Bay, Funchal','~130–180€']],
+x:[['Vila do Peixe — Câmara de Lobos','Peixe grelhado à vista','Câmara de Lobos, Madeira','~30€'],['Restaurante Cachalote — Porto Moniz','Peixe e marisco','Porto Moniz, Madeira','~24€'],['Restaurante Aquário — Porto Moniz','Peixe fresco','Porto Moniz, Madeira','~24€'],['Quinta do Furão — Santana','Restaurante de quinta com vista','Quinta do Furão, Santana','~30€'],['Truta no Ribeiro Frio','Restaurante de referência','Ribeiro Frio, Madeira','~24€']]};
+const SUP=[['Pingo Doce — Funchal','Centro do Funchal','Pingo Doce, Funchal'],['Continente Bom Dia','Perto da marina','Continente Bom Dia, Funchal'],['Pingo Doce Ribeira Brava','Paragem rápida','Pingo Doce, Ribeira Brava']];
+const NOITE=[['Rua de Santa Maria','Bares na Zona Velha','Rua de Santa Maria, Funchal'],['Poncha Bar','Poncha preparada à vista','Rua de Santa Maria, Funchal'],['Prince Albert Bar','Bar tranquilo, vinhos e whisky','Rua da Alfândega, Funchal'],['Casino da Madeira','Projeto de Niemeyer','Av. do Infante, Funchal'],['Marina / Av. do Mar','Passeio noturno','Av. do Mar, Funchal']];
+const GPS=[['Aeroporto Cristiano Ronaldo (FNC)','','Caminho do Aeroporto, Santa Cruz'],['Hospital Dr. Nélio Mendonça','Urgências','Av. Luís de Camões, Funchal'],['Posto de Turismo — Funchal','','Av. Arriaga 18, Funchal']];
+const BAG=['Casaco corta-vento / impermeável','Camadas de roupa','Calçado de caminhada','Fato de banho & toalha','Carta de condução','Documentos (CC / passaporte)','Powerbank','Comprimidos para enjoo','Medicamentos pessoais'];
+
+function list(key,items,price){return '<div class="pl">'+items.map((it,i)=>{const id=key+i,on=S.v[id]?' on':'';return `<div class="pc"><span class="ck${on}" data-v="${id}">✓</span><div><div class="pn">${esc(it[0])}</div>${it[1]?`<div class="pd">${esc(it[1])}</div>`:''}${it[2]?`<div class="pg">📍 ${esc(it[2])} · <a target="_blank" rel="noopener" href="${gl(it[2])}">abrir ↗</a></div>`:''}</div>${price&&it[3]?`<span class="pp">${it[3]}</span>`:''}</div>`}).join('')+'</div>'}
+
+let h='';
+DAYS.forEach((d,n)=>{h+=`<div class="panel${n?'':' on'}" id="${d[0]}"><h2>${d[3]}</h2><p class="lead">${d[2]}</p><div class="tl">`+d[4].map((a,i)=>{const id=d[0]+'-'+i,on=S.v[id];return `<div class="card ${a[0]}${on?' done':''}"><div class="r"><span class="t">${a[1]}</span><span class="ti">${esc(a[2])}</span><span class="ck${on?' on':''}" data-v="${id}" data-c="1">✓</span></div><p>${esc(a[3])}</p></div>`}).join('')+'</div></div>'});
+h+='<div class="panel" id="ver"><h2>Pontos a não perder</h2><p class="lead">Marquem o que já visitaram (guardado neste aparelho).</p>'+VER.map((b,i)=>`<div class="blk"><h3>${b[0]}</h3>${list('v'+i+'_',b[1])}</div>`).join('')+'</div>';
+h+=`<div class="panel" id="comer"><h2>Onde comer & supermercados</h2><p class="lead">Preços estimados por pessoa, sem bebidas. Para grupos grandes, liguem a reservar.</p>
+<div class="blk"><h3>🍽️ Restaurantes</h3><div class="sw"><button class="on" data-f="eco">Económico<br><small>~20–25€/dia</small></button><button data-f="med">Médio<br><small>~45–55€/dia</small></button></div>
+<div class="fp on" id="f-eco"><h4>Funchal</h4>${list('fe',ECO.f,1)}<h4>Fora do Funchal (na estrada)</h4>${list('fx',ECO.x,1)}<div class="note">💶 <b>~85€ por pessoa</b> em 7 refeições, sem bebidas.</div></div>
+<div class="fp" id="f-med"><h4>Funchal</h4>${list('me',MED.f,1)}<h4>Fora do Funchal (na estrada)</h4>${list('mx',MED.x,1)}<div class="note">💶 <b>~185€ por pessoa</b> em 7 refeições, sem bebidas.</div></div></div>
+<div class="blk"><h3>📍 Restaurantes por zona e categoria</h3><p class="lead">Em toda a ilha. Também aparecem no mapa 3D (filtro por categoria). Nomes recolhidos de listas e guias online; as localizações no mapa são aproximadas. Confirmem morada, horário e preços antes de ir.</p>
+<select class="sel" id="rz" onchange="renderRest()"><option value="">Todas as zonas</option><option>Funchal</option><option>Câmara de Lobos</option><option>Porto Moniz</option><option>Ribeira Brava e Ponta do Sol</option><option>Calheta e Oeste</option><option>São Vicente</option><option>Santana e Faial</option><option>Machico e Caniçal</option><option>Santa Cruz e Caniço</option><option>Camacha</option><option>Montanha</option><option>Porto Santo</option></select>
+<select class="sel" id="rc" onchange="renderRest()"><option value="">Todas as categorias</option><option value="rf">🐟 Peixe &amp; marisco</option><option value="re">🍖 Espetada &amp; tradicional</option><option value="rp">🍹 Petiscos &amp; poncha</option><option value="rg">⭐ Fine dining</option><option value="rv">🌅 Com vista / quinta</option></select><div id="rl"></div></div>
+<div class="blk"><h3>🛒 Supermercados</h3>${list('s',SUP)}</div>
+<div class="blk"><h3>🌙 Depois do jantar</h3>${list('n',NOITE)}<div class="note">🍹 <b>Poncha</b>: mel, sumo de citrinos e aguardente de cana.</div></div></div>`;
+h+=`<div class="panel" id="mapas"><h2>Mapa 3D da Madeira e Porto Santo</h2><p class="lead">Toca num marcador para ver detalhes, rota no Google Maps e marcar como visitado.</p>
+<input id="q" placeholder="🔎 Pesquisar vila, miradouro, praia, levada…" autocomplete="off"><div id="res"></div><div class="chs" id="chs"></div>
+<div id="mw"><div id="map"></div><div class="tools"><button id="b3" class="on" title="Inclinar 3D">🧊</button><button id="bo" title="Rodar">↻</button><button id="bs" title="Estilo">🗺</button><button id="bt" title="Trajetos">🧭</button></div>
+<div id="sh"><button id="x" aria-label="Fechar">✕</button><div id="shc"></div></div></div>
+<div class="blk" style="margin-top:14px"><h3>🗺️ Rotas por dia</h3><p class="lead">Abre a rota no Google Maps.</p><div class="pl">${[['Dia 1: Aeroporto → Funchal','Aeroporto da Madeira/Funchal'],['Dia 2: Funchal → Porto Moniz','Funchal to Porto Moniz'],['Dia 3: Funchal → Santana → Pico do Arieiro','Funchal to Santana to Pico do Arieiro'],['Dia 4: Funchal → Curral das Freiras','Funchal to Eira do Serrado']].map(r=>`<div class="pc"><div><div class="pn">${r[0]}</div></div><a target="_blank" rel="noopener" href="${gl(r[1])}">Abrir ↗</a></div>`).join('')}</div></div>
+<div class="blk"><h3>🚌 Transportes públicos (reserva)</h3><div class="pl">${[['Horários do Funchal','https://www.horariosdofunchal.pt'],['Rodoeste','https://www.rodoeste.pt'],['SAM','https://www.sam.pt'],['Teleférico do Funchal','https://www.madeiracablecar.com']].map(r=>`<div class="pc"><div><div class="pn">${r[0]}</div></div><a target="_blank" rel="noopener" href="${r[1]}">Abrir ↗</a></div>`).join('')}</div>
+<div class="note">🚗 Muitos túneis e estradas de montanha estreitas — reservem tempo extra.</div></div></div>`;
+h+=`<div class="panel" id="pratico"><h2>Guia prático</h2>
+<div class="blk"><h3>📝 Notas do grupo</h3><textarea id="notes" placeholder="Reservas, alojamento, dados do carro… (guarda neste aparelho)"></textarea></div>
+<div class="blk"><h3>🚗 Carro alugado</h3><ul><li>Todos os condutores registados, com carta válida</li><li>Seguro contra danos e roubo confirmado</li><li>Combinar depósito cheio ou vazio</li><li>Fotografar o carro antes de sair</li><li>Devolver o carro no dia 14 até às 19h00</li></ul></div>
+<div class="blk"><h3>🌐 Sites</h3><div class="pl">${[['Visit Madeira','https://www.visitmadeira.pt'],['Aeroporto FNC','https://www.aeroportomadeira.pt'],['IPMA (tempo)','https://www.ipma.pt']].map(r=>`<div class="pc"><div><div class="pn">${r[0]}</div></div><a target="_blank" rel="noopener" href="${r[1]}">Abrir ↗</a></div>`).join('')}</div></div>
+<div class="blk"><h3>🚨 Emergência</h3><div class="pl"><div class="pc"><div><div class="pn">Número único</div></div><span class="pp">112</span></div></div></div>
+<div class="blk"><h3>📍 Moradas úteis</h3>${list('g',GPS)}</div>
+<div class="blk"><h3>🧳 Bagagem</h3>${list('b',BAG.map(x=>[x]))}</div>
+<div class="blk"><h3>💶 Orçamento por pessoa</h3><div class="pl">${[['Carro + combustível + portagens (2 dias, 13–14 nov)','~40–60€'],['Refeições (económico / médio)','~85€ / ~185€'],['Entradas (teleférico, skywalk, tours)','~35–50€'],['Alojamento (3 noites)','variável']].map(r=>`<div class="pc"><div><div class="pn">${r[0]}</div></div><span class="pp">${r[1]}</span></div>`).join('')}</div></div>
+<button class="rb" id="rst">Repor marcações</button></div>`;
+$('panels').innerHTML=h;
+const TABS=[...DAYS.map(d=>[d[0],d[1]]),['ver','Ver'],['comer','Comer'],['mapas','Mapas'],['pratico','Prático']];
+$('tabs').innerHTML=TABS.map((t,i)=>`<button class="tab${i?'':' on'}" data-p="${t[0]}">${t[1]}</button>`).join('');
+
+document.addEventListener('click',e=>{const t=e.target.closest('.tab');if(t){document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('on'));t.classList.add('on');$(t.dataset.p).classList.add('on');scrollTo(0,0);if(t.dataset.p=='mapas')initMap();return}
+const c=e.target.closest('.ck');if(c){S.v[c.dataset.v]=!S.v[c.dataset.v];c.classList.toggle('on',!!S.v[c.dataset.v]);if(c.dataset.c)c.closest('.card').classList.toggle('done');save();return}
+const f=e.target.closest('[data-f]');if(f){document.querySelectorAll('.sw button,.fp').forEach(x=>x.classList.remove('on'));f.classList.add('on');$('f-'+f.dataset.f).classList.add('on')}});
+$('notes').value=S.notes||'';$('notes').oninput=e=>{S.notes=e.target.value;save()};
+$('rst').onclick=()=>{if(confirm('Repor todas as marcações de visitado?')){S.v={};save();location.reload()}};
+const dd=Math.ceil((new Date('2026-11-12T09:05:00Z')-Date.now())/864e5);$('cd').textContent=dd>0?`🌺 Faltam ${dd} dias para a viagem`:'🌺 Bom trip!';
+
+/* ---- mapa 3D ---- */
+// tipo: [cor, emoji, legenda, prioridade]
+const K={air:['#1767b5','✈️','Aeroporto',0],city:['#0d5c73','🏙️','Cidade',0],vil:['#d9822b','🏡','Vila',1],view:['#2a7f62','🌄','Miradouro',2],nat:['#2f8a57','🌿','Natureza',2],hike:['#1b7f5c','🥾','Levada',2],beach:['#e0a82e','🏖️','Praia',2],cult:['#6a4c93','⛪','Cultura',3],port:['#1767b5','⛴️','Porto',2],sport:['#c0272d','⚽','Futebol / CR7',2],craft:['#b5773a','🧺','Artesanato',2],wine:['#8e2b57','🍷','Vinho / rum',3],tour:['#e0562e','🛷','Experiência',2],rf:['#1f6fb0','🐟','Peixe & marisco',2],re:['#a8442a','🍖','Espetada & tradicional',2],rp:['#d98a1e','🍹','Petiscos & poncha',2],rg:['#6b3a8a','⭐','Fine dining',2],rv:['#2a7f62','🌅','Restaurante com vista',2]};
+const D=[['fnc','Aeroporto da Madeira (CR7)','air',32.6979,-16.7745,'Pista espetacular, em Santa Cruz.'],['fun','Funchal','city',32.6669,-16.9241,'Capital: marina, Zona Velha, mercados e jardins.'],['mer','Mercado dos Lavradores','cult',32.6505,-16.9062,'Frutas, flores e peixe-espada. Melhor de manhã.'],['zv','Zona Velha','cult',32.6470,-16.9060,'Portas pintadas, restaurantes e bares.'],['cr7','Museu CR7','sport',32.6463,-16.9080,'Troféus e memorabília, junto à marina.'],['tel','Teleférico do Funchal','port',32.6461,-16.9034,'Sobe da Zona Velha ao Monte (~15 min).'],['mon','Monte','vil',32.6750,-16.8955,'Igreja, jardins e carros de cesto.'],['jtm','Monte Palace','nat',32.6712,-16.8975,'Jardim com azulejos e lagos.'],['jb','Jardim Botânico','nat',32.6650,-16.8955,'Vista sobre a baía do Funchal.'],['pb','Pico dos Barcelos','view',32.6590,-16.9420,'Miradouro sobre o Funchal, ótimo ao fim da tarde.'],['cl','Câmara de Lobos','vil',32.6497,-16.9770,'Aldeia de pescadores. Prova poncha e peixe-espada.'],['cg','Cabo Girão','view',32.6560,-17.0045,'~580 m, com skywalk de vidro.'],['rb','Ribeira Brava','vil',32.6733,-17.0640,'Vila costeira com paredão.'],['ps','Ponta do Sol','vil',32.6800,-17.1030,'A vila mais soalheira, pôr do sol famoso.'],['cal','Calheta','vil',32.7210,-17.1760,'Praia de areia dourada e marina.'],['pp','Ponta do Pargo (Farol)','view',32.8087,-17.2650,'Farol no extremo ocidental.'],['rab','Rabaçal e 25 Fontes','hike',32.7556,-17.1313,'Cascatas e laurissilva.'],['fan','Fanal','nat',32.8080,-17.1570,'Floresta de til envolta em nevoeiro.'],['pm','Porto Moniz','vil',32.8663,-17.1690,'Piscinas naturais de lava.'],['sx','Seixal','vil',32.8265,-17.1070,'Praias de areia negra e cascata.'],['sv','São Vicente','vil',32.7990,-17.0430,'Vila verde com grutas.'],['enc','Encumeada','view',32.7480,-17.0200,'Vê-se o norte e o sul da ilha.'],['pser','Paul da Serra','nat',32.7530,-17.0700,'Planalto a 1500 m. Atenção ao nevoeiro.'],['ar','Pico do Arieiro','nat',32.7358,-16.9290,'1818 m. Nascer do sol sobre as nuvens.'],['pr','Pico Ruivo','nat',32.7587,-16.9423,'O ponto mais alto (1862 m).'],['eira','Eira do Serrado','view',32.7141,-16.9660,'Miradouro sobre o Curral das Freiras.'],['cf','Curral das Freiras','vil',32.7250,-16.9610,'Aldeia no vale, famosa pelas castanhas.'],['san','Santana','vil',32.8030,-16.8810,'Casas triangulares de colmo.'],['caq','Levada do Caldeirão Verde','hike',32.7930,-16.8920,'Laurissilva até cascata de 100 m. Lanterna!'],['rfrio','Ribeiro Frio','nat',32.7270,-16.8900,'Viveiro de trutas e início da levada dos Balcões.'],['cam','Camacha','vil',32.6785,-16.8450,'Terra do vime.'],['mac','Machico','vil',32.7190,-16.7670,'Primeiro povoado da ilha.'],['psl','Ponta de São Lourenço','nat',32.7440,-16.7010,'Falésias vermelhas; trilho ~3h sem sombra.'],['can','Caniçal','vil',32.7380,-16.7370,'Antiga vila baleeira e Prainha.'],['crg','Cristo Rei (Garajau)','view',32.6410,-16.8370,'Estátua sobre as falésias.'],['cas','Casino da Madeira','cult',32.6408,-16.9238,'Projeto de Niemeyer.'],['pform','Praia Formosa','beach',32.6439,-16.9382,'Calhau com passeio marítimo.'],['ps_v','Vila Baleira (Porto Santo)','city',33.0570,-16.3400,'Capital do Porto Santo.'],['ps_p','Praia Dourada (Porto Santo)','beach',33.0450,-16.3450,'9 km de areia dourada.'],['ps_pc','Pico do Castelo (Porto Santo)','view',33.0750,-16.3590,'Miradouro de 437 m.'],
+['sev','Sé do Funchal','cult',32.6486,-16.9078,'Catedral do séc. XV com teto mudéjar.'],['cest','Carros de Cesto do Monte','tour',32.6742,-16.8982,'Descida de ~2 km em cestos de vime. Pago; confirma horário.'],['vime','Vime e Cestaria da Camacha','craft',32.6795,-16.8455,'Oficinas e lojas de vime feitas à mão.'],['bla','Blandy\'s Wine Lodge','wine',32.6489,-16.9051,'Armazéns do vinho Madeira com visita e prova.'],['fst','Fortaleza de São Tiago','cult',32.6445,-16.9046,'Forte do séc. XVII junto à Zona Velha.'],['pdsl','Palácio de São Lourenço','cult',32.6444,-16.9099,'Fortaleza-palácio sobre a marina.'],['pal','Jardins do Palheiro','nat',32.6636,-16.8777,'Quinta de camélias e flores.'],['mrum','Engenhos da Calheta (Rum)','wine',32.7198,-17.1735,'Engenho de cana com prova de rum e poncha.'],['mbal','Museu da Baleia','cult',32.7390,-16.7345,'Caça à baleia e vida marinha, no Caniçal.'],['pcz','Porto da Cruz','vil',32.7745,-16.8210,'Vila do norte sob a Penha d\'Águia.'],['sds','Santo da Serra','vil',32.7160,-16.8160,'Vila de montanha com parque e golfe.'],['pdel','Ponta Delgada','vil',32.8205,-16.9975,'Piscina natural e igreja do Bom Jesus.'],['fai','Faial','vil',32.7770,-16.8450,'Costa norte e Penha d\'Águia.'],['sc','Santa Cruz','vil',32.6880,-16.7940,'Vila junto ao aeroporto, com passeio marítimo.'],['pre','Praia de Machico','beach',32.7195,-16.7640,'Areia clara e pôr do sol.'],
+['ps_a','Aeroporto do Porto Santo','air',33.0734,-16.3500,'A ~3 km da vila.'],['ps_cais','Cais do Porto Santo','port',33.0540,-16.3375,'Chegada do ferry Lobo Marinho (~2h15).'],['ps_c','Casa de Colombo (Porto Santo)','cult',33.0575,-16.3405,'Museu sobre Cristóvão Colombo.'],['ps_pf','Pico do Facho (Porto Santo)','view',33.0620,-16.3090,'Nascer do sol.'],['ps_cal','Ponta da Calheta (Porto Santo)','beach',33.0070,-16.3850,'Falésias, bares e mar calmo.'],['ps_fa','Fonte da Areia (Porto Santo)','nat',33.0845,-16.3340,'Fonte natural na costa norte.'],['ps_mo','Moinhos do Porto Santo','cult',33.0560,-16.3560,'Moinhos de vento tradicionais.'],
+['r_gav','Gavião Novo','re',32.6479,-16.9061,'Cozinha tradicional na Zona Velha.','Funchal'],['r_bar','Barbusano','re',32.6478,-16.9064,'Espetada e pratos regionais.','Funchal'],['r_arm','Armazém do Sabor','re',32.6481,-16.9059,'Madeirense com toque moderno.','Funchal'],['r_tap','O Tapassol','re',32.6480,-16.9120,'Espetada em espeto de loureiro.','Funchal'],['r_don','Restaurante Dona Amélia','re',32.6482,-16.9115,'Madeirense clássica.','Funchal'],['r_cpo','Casa da Poncha','rp',32.6472,-16.9062,'Petiscos e poncha.','Funchal'],['r_mer','Petiscos no Mercado dos Lavradores','rp',32.6506,-16.9064,'Refeição rápida e fruta.','Funchal'],['r_aku','Akua by Madeira Fish Market','rf',32.6502,-16.9070,'Peixe e marisco frescos.','Funchal'],['r_kam','Restaurante Kampo','rg',32.6460,-16.9130,'Portuguesa contemporânea.','Funchal'],['r_gal','Il Gallo d\'Oro (2★ Michelin)','rg',32.6385,-16.9325,'Noite especial (~130–180€).','Funchal'],
+['r_vdp','Vila do Peixe','rf',32.6500,-16.9765,'Peixe grelhado à vista.','Câmara de Lobos'],['r_fdp','Fajã dos Padres','rv',32.6530,-17.0150,'Fajã isolada junto ao mar (localização aprox.).','Câmara de Lobos'],
+['r_cac','Restaurante Cachalote','rf',32.8666,-17.1693,'Peixe e marisco junto às piscinas.','Porto Moniz'],['r_aqu','Restaurante Aquário','rf',32.8657,-17.1700,'Peixe do dia com vista.','Porto Moniz'],
+['r_fur','Quinta do Furão','rv',32.8070,-16.8680,'Restaurante de quinta com vista (localização aprox.).','Santana e Faial'],['r_rf','Viveiros do Ribeiro Frio','re',32.7270,-16.8900,'Truta fresca.','Montanha'],['r_asal','Armazém do Sal','re',32.6490,-16.9075,'Cozinha portuguesa na Rua da Alfândega.','Funchal'],['r_barq','O Barqueiro','rf',32.6420,-16.9300,'Peixe e marisco; prato de peixe para partilhar (loc. aprox.).','Funchal'],['r_inf','Informal','rg',32.6500,-16.9140,'Cozinha criativa; chegar antes da abertura (loc. aprox.).','Funchal'],['r_snug','The Snug Smoke House','re',32.6485,-16.9100,'Fumeiro/grelhados, com opções vegetarianas (loc. aprox.).','Funchal'],['r_cip','Vila Cipriani (Reid\'s)','rg',32.6410,-16.9380,'Cozinha italiana no Reid\'s Palace (loc. aprox.).','Funchal'],
+['r_lag','O Lagar','re',32.6490,-16.9780,'Grande casa de espetada (loc. aprox.).','Câmara de Lobos'],
+['r_mur','Muralha Terrace','re',32.6735,-17.0645,'Grelhados com esplanada (loc. aprox.).','Ribeira Brava e Ponta do Sol'],['r_dl','Don Luis II','rf',32.6720,-17.0700,'Peixe e marisco, Tabúa (loc. aprox.).','Ribeira Brava e Ponta do Sol'],['r_ma','Maré Alta','rf',32.6805,-17.1035,'Peixe na Ponta do Sol (loc. aprox.).','Ribeira Brava e Ponta do Sol'],['r_onda','Onda Grill & Sun','rf',32.6798,-17.1025,'Grelhados junto ao mar (loc. aprox.).','Ribeira Brava e Ponta do Sol'],['r_sp','Sol Poente','re',32.6803,-17.1040,'Cozinha regional na Ponta do Sol (loc. aprox.).','Ribeira Brava e Ponta do Sol'],
+['r_ea','Essência do Atlântico','rf',32.7205,-17.1740,'Restaurante na Calheta (loc. aprox.).','Calheta e Oeste'],['r_mak','Maktub Pub (Paul do Mar)','rp',32.7480,-17.2260,'Pôr do sol, cocktails e peixe (loc. aprox.).','Calheta e Oeste'],
+['r_lc','Las Caraibas','re',32.7995,-17.0435,'Familiar, vistas e forno a lenha (loc. aprox.).','São Vicente'],['r_bv','Brasa Viva','re',32.7985,-17.0425,'Espetada em São Vicente (loc. aprox.).','São Vicente'],
+['r_en','Estrela do Norte','re',32.8035,-16.8815,'Pratos tradicionais, poncha e vinho Madeira (loc. aprox.).','Santana e Faial'],['r_sm','Serra e Mar (Faial)','re',32.7765,-16.8460,'Bolo do caco muito elogiado (loc. aprox.).','Santana e Faial'],['r_csj','Calhau de São Jorge','rf',32.8320,-16.9100,'Junto ao mar, costa norte (loc. aprox.).','Santana e Faial'],
+['r_pip','A Pipa','rf',32.7385,-16.7372,'Peixe de referência no Caniçal (loc. aprox.).','Machico e Caniçal'],['r_mub','Muralhas Bar','rf',32.7378,-16.7365,'Peixe e marisco, Rua das Pedreiras (loc. aprox.).','Machico e Caniçal'],['r_cab','O Cabrestante','rf',32.7380,-16.7355,'Caniçal (loc. aprox.).','Machico e Caniçal'],['r_tl','Tasca da Laurinda','re',32.7192,-16.7690,'Tasca em Machico (loc. aprox.).','Machico e Caniçal'],
+['r_am','Adega Moniz','rp',32.6880,-16.7945,'Mini bar de petiscos e cerveja gelada (loc. aprox.).','Santa Cruz e Caniço'],['r_mo','O Moinho','re',32.6870,-16.7960,'Comida de forno a lenha (loc. aprox.).','Santa Cruz e Caniço'],['r_ag','A Gosto','re',32.6885,-16.7935,'Bifes e hambúrgueres; reservar à noite (loc. aprox.).','Santa Cruz e Caniço'],['r_tc','Talho do Caniço','re',32.6483,-16.8412,'Compra a carne e grelha-a à mesa (loc. aprox.).','Santa Cruz e Caniço'],['r_cs','Casa dos Salgados (Camacha)','rg',32.6790,-16.8440,'Só com reserva, sobretudo grupos (loc. aprox.).','Camacha'],
+['r_psc','Bares da Ponta da Calheta','rp',33.0075,-16.3845,'Petiscos e bebidas à beira-mar.','Porto Santo']];
+const L=[['bus',['fnc','fun']],['bus',['fun','cl','cg']],['bus',['fun','rb','ps','cal']],['bus',['cal','pm']],['bus',['pm','sx','sv']],['bus',['fun','san','sv']],['bus',['fun','mac','can']],['sea',['fun','ps_cais']],['bus',['ps_cais','ps_v','ps_a']]];
+const TJ=[['Aeroporto → Funchal','~30 min','Autocarro 113/20 (Aerobus) ou táxi.',[0],'fun'],['Funchal → Cabo Girão','~45 min','Rodoeste ou carro, via Câmara de Lobos.',[1],'cg'],['Costa sul até à Calheta','~1h30','Rodoeste via Ribeira Brava e Ponta do Sol.',[2],'cal'],['Calheta → Porto Moniz','~50 min','Estrada panorâmica pela costa oeste.',[3],'pm'],['Porto Moniz → São Vicente','~45 min','Seixal e a Encumeada ao lado.',[4],'sx'],['Funchal → Santana','~1h15','Costa norte, depois Caldeirão Verde.',[5],'san'],['Funchal → Machico → Caniçal','~1h','Para São Lourenço e Prainha.',[6],'mac'],['Funchal → Porto Santo','~2h15','Ferry diário. Reserva com antecedência.',[7],'ps_cais'],['Dentro do Porto Santo','~15 min','Cais, Vila Baleira e aeroporto.',[8],'ps_v']];
+const J=[['fun','Funchal'],['pm','Porto Moniz'],['san','Santana'],['ar','Pico do Arieiro'],['cal','Calheta'],['cl','Câmara de Lobos'],['psl','São Lourenço'],['ps_v','Porto Santo']];
+const ALL=D.map(d=>({id:d[0],n:d[1],k:d[2],lat:d[3],lon:d[4],d:d[5],em:K[d[2]][1],col:K[d[2]][0],tp:K[d[2]][2],pr:K[d[2]][3],z:d[6]||''}));
+const BY={};ALL.forEach(a=>BY[a.id]=a);
+let map=null,NO=0,orb=0,si=0,sel='';
+const STY=['liberty','bright','positron'].map(s=>'https://tiles.openfreemap.org/styles/'+s);
+const vis=()=>{if(!map)return;const z=map.getZoom();ALL.forEach(a=>{a.e.classList.toggle('h',z<[0,9.5,10.5,12][a.pr]||(NO&&!['nat','hike','view','beach'].includes(a.k))||(sel&&a.k!=sel));a.e.classList.toggle('lb',z>=12)})};
+function show(a,fly){if(fly)map.flyTo({center:[a.lon,a.lat],zoom:Math.max(map.getZoom(),a.pr?15:13.5),pitch:62,bearing:map.getBearing()+25,duration:2000});
+const q=a.n.split(' (')[0]+', Madeira, Portugal';$('shc').innerHTML=`<h3>${a.em} ${esc(a.n)}</h3><p><b>${a.tp}</b></p><p>${esc(a.d)}</p>${H[a.id]?`<p><b>Como chegar:</b> ${esc(H[a.id])}</p>`:''}<a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}">🚗 Ir</a><a target="_blank" rel="noopener" href="${gl(q)}">🗺 Google Maps</a><button class="b" id="vb">${S.v['m_'+a.id]?'✔ Visitado':'☐ Já visitei'}</button>`;
+$('vb').onclick=()=>{S.v['m_'+a.id]=!S.v['m_'+a.id];save();a.e.classList.toggle('vis',!!S.v['m_'+a.id]);$('vb').textContent=S.v['m_'+a.id]?'✔ Visitado':'☐ Já visitei'};$('sh').classList.add('o')}
+function initMap(){if(map){setTimeout(()=>map.resize(),50);return}
+map=new maplibregl.Map({container:'map',style:STY[0],center:[-16.95,32.75],zoom:8.8,pitch:55,bearing:-10,maxPitch:80,attributionControl:{compact:true}});
+map.addControl(new maplibregl.NavigationControl({visualizePitch:true}),'top-left');
+map.addControl(new maplibregl.GeolocateControl({positionOptions:{enableHighAccuracy:true},trackUserLocation:true,showUserLocation:true}),'top-left');
+map.addControl(new maplibregl.ScaleControl({unit:'metric'}),'bottom-left');
+map.on('style.load',()=>{if(!map.getSource('dem'))map.addSource('dem',{type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],encoding:'terrarium',tileSize:256,maxzoom:14});try{map.setTerrain({source:'dem',exaggeration:1.5})}catch(e){}
+if(!map.getSource('r')){map.addSource('r',{type:'geojson',data:{type:'FeatureCollection',features:L.map((l,i)=>({type:'Feature',properties:{i,m:l[0]},geometry:{type:'LineString',coordinates:l[1].map(id=>[BY[id].lon,BY[id].lat])}}))}});
+map.addLayer({id:'rc',type:'line',source:'r',paint:{'line-color':'#fff','line-width':['interpolate',['linear'],['zoom'],8,5,15,10],'line-opacity':.85},layout:{'line-cap':'round'}});
+map.addLayer({id:'rl',type:'line',source:'r',paint:{'line-color':['match',['get','m'],'sea','#1767b5','#e08a1e'],'line-width':['interpolate',['linear'],['zoom'],8,2.5,15,5]},layout:{'line-cap':'round'}})}paintHL()});
+ALL.forEach(a=>{const e=document.createElement('div');e.className='mk'+(S.v['m_'+a.id]?' vis':'');e.innerHTML=`<i style="background:${a.col}">${a.em}</i><b>${esc(a.n.split(' (')[0])}</b>`;e.onclick=ev=>{ev.stopPropagation();show(a,1)};a.e=e;new maplibregl.Marker({element:e,anchor:'bottom'}).setLngLat([a.lon,a.lat]).addTo(map)});
+map.on('zoom',vis);vis();map.on('click',()=>$('sh').classList.remove('o'));$('x').onclick=()=>$('sh').classList.remove('o');
+$('chs').innerHTML=J.map(j=>`<button class="ch" data-j="${j[0]}">🔎 ${j[1]}</button>`).join('')+'<button class="ch" id="cm">🌿 Só natureza</button>'+Object.entries(K).map(([k,v])=>`<button class="ch" data-k="${k}">${v[1]} ${v[2]}</button>`).join('');
+$('chs').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.id=='cm'){NO=!NO;b.classList.toggle('on',!!NO);vis();return}
+if(b.dataset.k){sel=sel==b.dataset.k?'':b.dataset.k;document.querySelectorAll('[data-k]').forEach(x=>x.classList.toggle('on',x.dataset.k==sel));vis();return}
+const a=BY[b.dataset.j];map.flyTo({center:[a.lon,a.lat],zoom:a.id=='ps_v'?13:14,pitch:64,bearing:map.getBearing()+30,duration:2500})};
+$('q').oninput=e=>{const v=e.target.value.trim().toLowerCase(),r=$('res');if(v.length<2){r.style.display='none';return}const m=ALL.filter(a=>a.n.toLowerCase().includes(v)).slice(0,8);r.innerHTML=m.map(a=>`<div data-i="${a.id}">${a.em} ${esc(a.n)}</div>`).join('')||'<div>Sem resultados</div>';r.style.display='block'};
+$('res').onclick=e=>{const d=e.target.closest('[data-i]');if(!d)return;$('res').style.display='none';$('q').value='';show(BY[d.dataset.i],1)};
+$('b3').onclick=e=>{const on=map.getPitch()<10;map.easeTo({pitch:on?62:0,bearing:on?map.getBearing():0,duration:900});e.currentTarget.classList.toggle('on',on)};
+$('bo').onclick=e=>{orb=!orb;e.currentTarget.classList.toggle('on',!!orb);const f=()=>{if(!orb)return;map.setBearing(map.getBearing()+.12);requestAnimationFrame(f)};if(orb)f()};
+map.on('dragstart',()=>{orb=0;$('bo').classList.remove('on')});
+$('bs').onclick=()=>{si=(si+1)%3;map.setStyle(STY[si])};
+$('bt').onclick=lista;map.on('error',()=>{});}
+let HL=[],sa=null,raf=0;
+const paintHL=()=>{if(map&&map.getLayer('rl'))map.setPaintProperty('rl','line-opacity',HL.length?['case',['in',['get','i'],['literal',HL]],1,.1]:1)};
+function bus(c,em){cancelAnimationFrame(raf);if(!c.length)return;if(!sa){const e=document.createElement('div');e.style.cssText='font-size:30px;pointer-events:none';sa=new maplibregl.Marker({element:e}).setLngLat(c[0]).addTo(map)}sa.getElement().textContent=em;
+const n=c.length-1,dur=4500*n,t0=performance.now();const f=t=>{const u=((t-t0)%dur)/dur*n,i=Math.min(n-1,Math.floor(u)),k=u-i;sa.setLngLat([c[i][0]+(c[i+1][0]-c[i][0])*k,c[i][1]+(c[i+1][1]-c[i][1])*k]);raf=requestAnimationFrame(f)};raf=requestAnimationFrame(f)}
+window.route=i=>{const t=TJ[i];HL=t[3];paintHL();let c=[];t[3].forEach(li=>c=c.concat(L[li][1].map(id=>[BY[id].lon,BY[id].lat])));
+map.fitBounds(c.reduce((b,p)=>b.extend(p),new maplibregl.LngLatBounds(c[0],c[0])),{padding:{top:60,bottom:240,left:50,right:60},pitch:45,duration:1800,maxZoom:12.5});bus(c,L[t[3][0]][0]=='sea'?'⛴️':'🚌');
+$('shc').innerHTML=`<h3>🧭 ${t[0]}</h3><p><b>${t[1]}</b></p><p>${t[2]}</p><p style="font-size:12px;color:#677">Confirma linhas e horários nos operadores.</p><button class="b" onclick="lista()">← Todos os trajetos</button>`};
+window.lista=()=>{HL=[];paintHL();cancelAnimationFrame(raf);if(sa){sa.remove();sa=null}$('shc').innerHTML='<h3>🧭 Trajetos</h3>'+TJ.map((t,i)=>`<div style="border-left:4px solid #d9482b;background:#f1f6f4;border-radius:10px;padding:9px 11px;margin:7px 0;cursor:pointer" onclick="route(${i})"><b>${t[0]}</b><br><small>${t[1]}</small></div>`).join('');$('sh').classList.add('o')};
+function renderRest(){const z=$('rz').value,c=$('rc').value;const m=ALL.filter(a=>/^r[fepgv]$/.test(a.k)&&(!z||a.z==z)&&(!c||a.k==c));$('rl').innerHTML=m.length?'<div class="pl">'+m.map(a=>`<div class="pc"><div><div class="pn">${a.em} ${esc(a.n)}</div><div class="pd">${esc(a.d)} · ${esc(a.tp)} · ${esc(a.z)}</div><div class="pg"><a target="_blank" rel="noopener" href="${gl(a.n+', Madeira')}">abrir ↗</a> · <a href="#" data-m="${a.id}">ver no mapa 3D</a></div></div></div>`).join('')+'</div>':'<p class="lead">Sem resultados.</p>'}
+document.addEventListener('click',e=>{const m=e.target.closest('[data-m]');if(!m)return;e.preventDefault();document.querySelector('.tab[data-p=mapas]').click();setTimeout(()=>show(BY[m.dataset.m],1),500)});
+renderRest();
+</script><script>
+const H={fnc:'Aerobus/autocarros 113 e 20 até ao Funchal (~25–35 min). Táxi ou carro à porta.',fun:'Autocarros Horários do Funchal; teleférico para o Monte.',mer:'A pé do centro do Funchal.',zv:'A pé do centro.',sev:'A pé.',tel:'A pé desde a marina.',mon:'Teleférico ou autocarro 20/21.',jb:'Autocarro 29/30/31 ou táxi.',pb:'Autocarro 4 ou carro.',cl:'Autocarro 1/4 (~20 min).',cg:'Rodoeste ou carro. Confirmar horários.',rb:'Rodoeste (~40 min).',ps:'Rodoeste (~50 min).',cal:'Rodoeste (~1h).',pp:'Só de carro ou táxi.',rab:'Carro até à Rabaçal e a pé (~1h30–3h). Confirmar entradas.',fan:'Só de carro (Paul da Serra / Ribeira da Janela).',pm:'Rodoeste (~1h45) ou carro via Encumeada.',sx:'Carro ou autocarro desde Porto Moniz.',sv:'Rodoeste (~1h15).',enc:'Carro ou Rodoeste para São Vicente.',ar:'Táxi/carro (~40 min). Leva casaco.',pr:'A pé desde o Arieiro (~3h ida) ou Achada do Teixeira.',eira:'Autocarro 81 ou carro.',cf:'Autocarro 81 (túnel).',san:'SAM/Rodoeste (~1h15).',fai:'Autocarro SAM.',caq:'Carro desde Santana. Lanterna e calçado impermeável.',mac:'Autocarro 113/156 (~45 min).',pre:'A pé do centro de Machico.',psl:'Carro até Baía d\'Abra, ou autocarro para Caniçal e a pé.',can:'Autocarro 113.',sc:'Autocarro 20/113.',crg:'Autocarro 155.',cam:'Autocarro 77/20.',cr7:'A pé do centro do Funchal (Praça do Mar).',cest:'Teleférico ou autocarro 20/21 até ao Monte.',vime:'Autocarro 77 ou carro.',bla:'A pé do centro. Visitas com marcação.',cas:'Autocarros da zona hoteleira ou táxi.',fst:'A pé da Zona Velha.',pdsl:'A pé do porto. Visitas limitadas.',jtm:'Teleférico + curta caminhada.',pal:'Autocarro 37 ou táxi.',pform:'Autocarro urbano ou a pé pela marginal.',mrum:'Rodoeste para a Calheta.',mbal:'Autocarro 113.',pcz:'SAM ou carro.',sds:'Autocarro 77 ou carro.',rfrio:'SAM (Santana) ou carro.',pser:'Só de carro. Atenção ao nevoeiro.',pdel:'Rodoeste/SAM desde São Vicente.',ps_a:'Táxi ou autocarro 3.',ps_v:'A pé do cais e da praia.',ps_c:'A pé desde a praça.',ps_p:'A pé desde Vila Baleira.',ps_cais:'A pé ou táxi até à vila.',ps_pc:'Carro ou trilho.',ps_pf:'Carro e curta caminhada.',ps_cal:'Carro, táxi ou autocarro.',ps_fa:'Carro desde Vila Baleira.',ps_mo:'Carro ou táxi.'};
+(()=>{const NS='http://www.w3.org/2000/svg',O='stroke="#4a2c22" stroke-width="3.5" stroke-linejoin="round"';let sd=5;const rnd=()=>(sd=sd*16807%2147483647)/2147483647;
+const DEFS=`<defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9be3f3"/><stop offset="1" stop-color="#4fb3d9"/></linearGradient><filter id="shd"><feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity=".3"/></filter>
+<symbol id="house" viewBox="0 0 100 100"><rect x="14" y="46" width="72" height="48" fill="#fff4e0" ${O}/><path d="M6 50L50 12L94 50Z" fill="#d9482b" ${O}/><rect x="22" y="60" width="14" height="14" fill="#6bb6d6" ${O}/><rect x="64" y="60" width="14" height="14" fill="#6bb6d6" ${O}/><path d="M42 94V72Q50 62 58 72V94Z" fill="#7a4a30"/></symbol>
+<symbol id="church" viewBox="0 0 100 100"><rect x="6" y="60" width="32" height="34" fill="#fff4e0" ${O}/><rect x="34" y="30" width="34" height="64" fill="#fff4e0" ${O}/><path d="M30 32L51 4L72 32Z" fill="#d9482b" ${O}/><circle cx="51" cy="48" r="8" fill="#ffd36a" ${O}/><path d="M44 94V76Q51 68 58 76V94Z" fill="#7a4a30"/></symbol>
+<symbol id="peak" viewBox="0 0 100 100"><path d="M0 96L38 22L58 52L70 36L100 96Z" fill="#9a6f4e" ${O}/><path d="M38 22L49 42L38 37L29 44Z" fill="#fff"/><path d="M0 96Q50 68 100 96Z" fill="#3f8a4a"/></symbol>
+<symbol id="tree" viewBox="0 0 100 100"><rect x="44" y="68" width="12" height="28" fill="#6a4330"/><circle cx="50" cy="42" r="32" fill="#2f8a57" stroke="#1d5a3a" stroke-width="3"/><circle cx="38" cy="36" r="10" fill="#4fae78"/></symbol>
+<symbol id="umb" viewBox="0 0 100 100"><ellipse cx="50" cy="92" rx="42" ry="7" fill="#f2d48a"/><path d="M50 92V34" stroke="#5a3322" stroke-width="5"/><path d="M8 44Q50 -8 92 44Z" fill="#ff7a59" ${O}/><path d="M30 28L40 44M60 28L70 44" stroke="#fff" stroke-width="5"/></symbol>
+<symbol id="plane" viewBox="0 0 100 100"><path d="M50 4L58 40L96 64V72L58 62L56 86L68 94V98L50 94L32 98V94L44 86L42 62L4 72V64L42 40Z" fill="#fff" stroke="#1767b5" stroke-width="4" stroke-linejoin="round"/></symbol>
+<symbol id="boat" viewBox="0 0 100 100"><path d="M10 72H90L76 92H24Z" fill="#fff" ${O}/><path d="M50 8V70L84 70Z" fill="#fff" ${O}/><path d="M46 14V70L18 70Z" fill="#ffd36a" ${O}/></symbol>
+<symbol id="palm" viewBox="0 0 100 100"><ellipse cx="50" cy="94" rx="30" ry="5" fill="#f2d48a"/><path d="M50 94Q52 60 46 34" stroke="#8a5a3a" stroke-width="9" fill="none" stroke-linecap="round"/><g fill="#2f8a57" stroke="#1d5a3a" stroke-width="3"><path d="M46 34Q20 20 6 38Q28 30 46 40Z"/><path d="M46 34Q30 4 12 10Q34 14 46 34Z"/><path d="M46 34Q62 6 88 14Q64 16 46 34Z"/><path d="M46 34Q76 26 94 46Q70 36 46 40Z"/></g></symbol>
+<symbol id="fish" viewBox="0 0 100 100"><path d="M10 50Q40 18 70 50Q40 82 10 50Z" fill="#4fb3d9" ${O}/><path d="M70 50L94 28V72Z" fill="#2a8bd6" ${O}/><circle cx="28" cy="46" r="4" fill="#fff"/></symbol>
+<symbol id="waterfall" viewBox="0 0 100 100"><path d="M4 8H96V40L84 52H16L4 40Z" fill="#7d8b7a" ${O}/><path d="M34 40V80M50 40V92M66 40V78" stroke="#fff" stroke-width="9" stroke-linecap="round"/><ellipse cx="50" cy="90" rx="38" ry="8" fill="#6bc4e8" ${O}/></symbol>
+<symbol id="cliff" viewBox="0 0 100 100"><path d="M20 96V20Q50 4 78 14V96Z" fill="#a8774f" ${O}/><path d="M20 40H78M30 62H70" stroke="#7a4a30" stroke-width="4"/><path d="M60 30H96V38H60Z" fill="#bfe6f5" ${O}/><path d="M0 96H100" stroke="#2a8bd6" stroke-width="8"/></symbol>
+<symbol id="basket" viewBox="0 0 100 100"><path d="M16 50H84L74 94H26Z" fill="#c8924f" ${O}/><path d="M22 66H80M26 80H76M36 50V94M50 50V94M64 50V94" stroke="#8a5a2f" stroke-width="3"/><path d="M20 50Q50 -4 80 50" fill="none" stroke="#8a5a2f" stroke-width="7"/></symbol>
+<symbol id="light" viewBox="0 0 100 100"><path d="M36 94L42 34H58L64 94Z" fill="#fff" ${O}/><rect x="40" y="50" width="20" height="12" fill="#d9482b"/><rect x="38" y="70" width="24" height="12" fill="#d9482b"/><rect x="38" y="20" width="24" height="14" fill="#ffd36a" ${O}/><path d="M34 22L50 6L66 22Z" fill="#d9482b" ${O}/></symbol>
+<symbol id="cable" viewBox="0 0 100 100"><path d="M0 18L100 34" stroke="#444" stroke-width="4"/><path d="M50 26V44" stroke="#444" stroke-width="4"/><rect x="30" y="44" width="40" height="32" rx="7" fill="#d9482b" ${O}/><rect x="38" y="52" width="24" height="12" fill="#bfe6f5"/></symbol>
+<symbol id="city" viewBox="0 0 100 100"><rect x="6" y="40" width="26" height="54" fill="#f2d7b0" ${O}/><rect x="34" y="14" width="30" height="80" fill="#e9c9a0" ${O}/><rect x="66" y="48" width="28" height="46" fill="#f7e3c4" ${O}/><path d="M42 30h14M42 44h14M42 58h14M42 72h14M14 54h10M14 68h10M74 62h12M74 76h12" stroke="#6bb6d6" stroke-width="6"/></symbol>
+<symbol id="stall" viewBox="0 0 100 100"><rect x="14" y="52" width="72" height="42" fill="#9a6b4b" ${O}/><path d="M6 54L16 22H84L94 54Z" fill="#fff" ${O}/><path d="M16 22H36L40 54H26ZM56 22H76L72 54H58Z" fill="#d9482b"/><circle cx="34" cy="68" r="7" fill="#ffb02e"/><circle cx="54" cy="68" r="7" fill="#e4572e"/><circle cx="72" cy="68" r="7" fill="#7cc65a"/></symbol>
+<symbol id="glass" viewBox="0 0 100 100"><path d="M20 14H80L52 54Z" fill="#ffd9a0" ${O}/><path d="M52 54V88M32 90H72" stroke="#4a2c22" stroke-width="6" stroke-linecap="round"/><circle cx="78" cy="18" r="12" fill="#ff9b3d" ${O}/></symbol>
+<symbol id="flower" viewBox="0 0 100 100"><path d="M50 94V54" stroke="#2f8a57" stroke-width="7"/><path d="M50 82Q72 70 82 78Q68 92 50 86Z" fill="#47a56f"/><g fill="#ff4f7a" ${O}><circle cx="50" cy="22" r="16"/><circle cx="72" cy="38" r="16"/><circle cx="64" cy="60" r="16"/><circle cx="36" cy="60" r="16"/><circle cx="28" cy="38" r="16"/></g><circle cx="50" cy="44" r="10" fill="#ffc94d" ${O}/></symbol>
+<symbol id="pool" viewBox="0 0 100 100"><ellipse cx="50" cy="68" rx="46" ry="24" fill="#2a8bd6" ${O}/><path d="M22 66q10-8 20 0t20 0t16 0" stroke="#fff" stroke-width="4" fill="none"/><path d="M6 66Q12 40 28 46Q34 56 22 70Z" fill="#4a4a52" ${O}/><path d="M94 66Q88 42 72 48Q66 58 78 70Z" fill="#4a4a52" ${O}/></symbol>
+<symbol id="sign" viewBox="0 0 100 100"><path d="M50 94V16" stroke="#6a4330" stroke-width="8"/><path d="M50 14H90L98 26L90 38H50Z" fill="#ffd36a" ${O}/><path d="M50 46H14L6 58L14 70H50Z" fill="#fff" ${O}/></symbol>
+<symbol id="sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="22" fill="#ffc94d" ${O}/><path d="M50 8V20M50 80V92M8 50H20M80 50H92M20 20L28 28M72 72L80 80M80 20L72 28M28 72L20 80" stroke="#ff9b3d" stroke-width="7" stroke-linecap="round"/></symbol>
+<symbol id="cave" viewBox="0 0 100 100"><path d="M4 96Q8 30 50 20Q92 30 96 96Z" fill="#8a8178" ${O}/><path d="M30 96Q32 56 50 52Q68 56 70 96Z" fill="#2a2420"/></symbol>
+<symbol id="whale" viewBox="0 0 100 100"><path d="M6 70Q10 40 50 42Q86 44 94 62Q70 90 30 86Q10 84 6 70Z" fill="#4a7fb5" ${O}/><path d="M82 52Q94 32 98 22Q86 30 82 40Z" fill="#4a7fb5" ${O}/><circle cx="26" cy="62" r="4" fill="#fff"/><path d="M40 30V12M32 20L40 12L48 20" stroke="#bfe6f5" stroke-width="5" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="cross" viewBox="0 0 100 100"><rect x="30" y="76" width="40" height="18" fill="#cfc9bd" ${O}/><path d="M50 74V30M18 44H82" stroke="#fff" stroke-width="12" stroke-linecap="round"/><circle cx="50" cy="20" r="9" fill="#fff" ${O}/></symbol>
+<symbol id="palheiro" viewBox="0 0 100 100"><rect x="22" y="72" width="56" height="22" fill="#fff4e0" ${O}/><path d="M10 78L50 8L90 78Z" fill="#d9b44a" ${O}/><path d="M24 62H76M32 46H68" stroke="#a8842f" stroke-width="3"/><path d="M42 94V80Q50 72 58 80V94Z" fill="#d9482b"/></symbol>
+<symbol id="mill" viewBox="0 0 100 100"><path d="M32 94L40 40H60L68 94Z" fill="#f1e2c4" ${O}/><path d="M30 40L50 22L70 40Z" fill="#9a5a45" ${O}/><path d="M50 32L10 6M50 32L90 8M50 32L12 60M50 32L88 58" stroke="#7a4a30" stroke-width="5"/></symbol>
+<symbol id="ball" viewBox="0 0 100 100"><circle cx="50" cy="52" r="40" fill="#fff" ${O}/><path d="M50 34L66 46L60 64H40L34 46Z" fill="#222"/><path d="M50 34V14M66 46L86 40M60 64L72 82M40 64L28 82M34 46L14 40" stroke="#222" stroke-width="4"/></symbol>
+<symbol id="sled" viewBox="0 0 100 100"><path d="M18 40H82L74 76H26Z" fill="#c8924f" ${O}/><path d="M24 54H78M26 66H76M38 40V76M50 40V76M62 40V76" stroke="#8a5a2f" stroke-width="3"/><path d="M28 76V88M72 76V88" stroke="#6a4330" stroke-width="5"/><path d="M12 90H88" stroke="#6a4330" stroke-width="7" stroke-linecap="round"/><path d="M18 40Q50 6 82 40" fill="none" stroke="#8a5a2f" stroke-width="6"/></symbol>
+<symbol id="barrel" viewBox="0 0 100 100"><path d="M24 14H76Q94 54 76 90H24Q6 54 24 14Z" fill="#a8663a" ${O}/><path d="M16 34H84M12 54H88M16 74H84" stroke="#4a2c22" stroke-width="5"/><circle cx="50" cy="54" r="6" fill="#ffd36a" ${O}/></symbol>
+<symbol id="dice" viewBox="0 0 100 100"><rect x="14" y="24" width="72" height="70" rx="12" fill="#fff" ${O}/><g fill="#d9482b"><circle cx="34" cy="44" r="7"/><circle cx="66" cy="44" r="7"/><circle cx="50" cy="59" r="7"/><circle cx="34" cy="74" r="7"/><circle cx="66" cy="74" r="7"/></g></symbol>
+<symbol id="fort" viewBox="0 0 100 100"><rect x="8" y="42" width="84" height="52" fill="#e0c79a" ${O}/><path d="M8 42V26H22V42M36 42V26H50V42M64 42V26H78V42M92 42V26H78" fill="#e0c79a" ${O}/><path d="M40 94V70Q50 58 60 70V94Z" fill="#4a3022"/><path d="M20 58V66M80 58V66" stroke="#4a3022" stroke-width="5"/></symbol></defs>`;
+const R={mad:{n:'Madeira',sb:'Laurissilva · levadas · picos',w:2340,h:1420,P:(lo,la)=>[(lo+17.30)*3280+60,(32.90-la)*3890+180],
+coast:[[-17.255,32.835],[-17.21,32.862],[-17.17,32.877],[-17.12,32.848],[-17.07,32.815],[-17.03,32.805],[-16.98,32.825],[-16.93,32.828],[-16.89,32.818],[-16.85,32.797],[-16.81,32.778],[-16.78,32.768],[-16.74,32.765],[-16.70,32.757],[-16.66,32.745],[-16.69,32.733],[-16.73,32.728],[-16.755,32.708],[-16.775,32.69],[-16.80,32.675],[-16.84,32.65],[-16.88,32.632],[-16.93,32.636],[-16.975,32.637],[-17.01,32.64],[-17.06,32.655],[-17.11,32.665],[-17.14,32.683],[-17.19,32.712],[-17.23,32.742],[-17.265,32.765],[-17.285,32.8]],
+ridge:[[-17.17,32.77],[-17.08,32.765],[-17.0,32.755],[-16.94,32.745],[-16.88,32.73],[-16.82,32.715]],trees:170,fer:[-16.95,32.598,'⛴️ Ferry para o Porto Santo']},
+ps:{n:'Porto Santo',sb:'A ilha dourada · 9 km de areia',w:1900,h:1560,P:(lo,la)=>[(lo+16.46)*9400+60,(33.11-la)*11200+180],
+coast:[[-16.395,32.998],[-16.41,33.03],[-16.4,33.065],[-16.375,33.088],[-16.345,33.097],[-16.315,33.093],[-16.29,33.075],[-16.278,33.055],[-16.295,33.04],[-16.33,33.036],[-16.365,33.028],[-16.37,33.015]],
+beach:[[-16.295,33.04],[-16.33,33.036],[-16.365,33.028],[-16.375,33.016]],trees:45,fer:[-16.335,33.003,'⛴️ Ferry vindo do Funchal']}};
+const mp=document.createElementNS(NS,'path'),HS=document.createElementNS(NS,'svg');HS.style.cssText='position:absolute;width:0;height:0';HS.appendChild(mp);document.body.appendChild(HS);
+const sm=(p,cl)=>{const n=p.length,g=i=>cl?p[(i+n)%n]:p[Math.max(0,Math.min(n-1,i))];let d='M'+p[0].join(' ');for(let i=0;i<(cl?n:n-1);i++){const a=g(i-1),b=g(i),c=g(i+1),e=g(i+2);d+=`C${b[0]+(c[0]-a[0])/6} ${b[1]+(c[1]-a[1])/6} ${c[0]-(e[0]-b[0])/6} ${c[1]-(e[1]-b[1])/6} ${c[0]} ${c[1]}`}return d+(cl?'Z':'')};
+const SYM={fun:'city',mer:'stall',zv:'glass',sev:'church',tel:'cable',mon:'church',jb:'flower',pb:'sign',cl:'fish',cg:'cliff',rb:'house',ps:'sun',cal:'palm',pp:'light',rab:'waterfall',fan:'tree',pm:'pool',sx:'waterfall',sv:'cave',enc:'sign',ar:'peak',pr:'peak',eira:'sign',cf:'house',san:'palheiro',fai:'house',caq:'waterfall',mac:'church',pre:'umb',psl:'cliff',can:'whale',sc:'house',crg:'cross',cam:'basket',fnc:'plane',cr7:'ball',cest:'sled',vime:'basket',bla:'barrel',cas:'dice',fst:'fort',pdsl:'fort',jtm:'palm',pal:'flower',pform:'umb',mrum:'barrel',mbal:'whale',pcz:'house',sds:'house',rfrio:'fish',pser:'mill',pdel:'pool',ps_fa:'cave',ps_mo:'mill',ps_a:'plane',ps_v:'house',ps_c:'boat',ps_p:'umb',ps_cais:'boat',ps_pc:'peak',ps_pf:'peak',ps_cal:'palm'},TS={air:'plane',city:'house',vil:'house',port:'boat',view:'peak',nat:'tree',hike:'tree',beach:'umb',cult:'church',sport:'church',craft:'basket',wine:'church',tour:'basket'};
+const BIG={fun:96,ps_v:86,fnc:66,ps_a:66};
+const ids=k=>ALL.filter(a=>!/^r[fepgv]$/.test(a.k)&&a.id.startsWith('ps_')==(k=='ps'));
+let cur='mad',CURP=[],k=1,k0=1,tx=0,ty=0;
+function build(key){const t=R[key];sd=5;const land=sm(t.coast.map(c=>t.P(...c)),1);mp.setAttribute('d',land);
+let s=`<rect width="${t.w}" height="${t.h}" fill="url(#sea)"/>`;for(let i=0;i<170;i++)s+=`<path d="M${rnd()*t.w} ${rnd()*t.h}q18-14 36 0q18 14 36 0" fill="none" stroke="#fff" stroke-width="4" opacity=".55"/>`;
+s+=`<clipPath id="lc"><path d="${land}"/></clipPath><path d="${land}" fill="none" stroke="#d6f3fb" stroke-width="110" stroke-linejoin="round" opacity=".7"/><path d="${land}" fill="#92c96e" stroke="#f0d58c" stroke-width="40" stroke-linejoin="round"/><path d="${land}" fill="#92c96e"/>`;
+if(t.ridge){const r=sm(t.ridge.map(c=>t.P(...c)));s+=`<g clip-path="url(#lc)"><path d="${r}" fill="none" stroke="#6aa656" stroke-width="300" stroke-linecap="round" opacity=".55"/><path d="${r}" fill="none" stroke="#4f8f48" stroke-width="140" stroke-linecap="round" opacity=".6"/></g>`}
+if(t.beach){const b=sm(t.beach.map(c=>t.P(...c)));s+=`<path d="${b}" fill="none" stroke="#fff1b8" stroke-width="46" stroke-linecap="round"/>`}
+const P=ids(key).map((a,i)=>{const[x,y]=t.P(a.lon,a.lat);return{a,x,y,w:BIG[a.id]||60,i}});
+const it=[],DEC=key=='ps'?['🌴','🌼','🐚']:['🌺','🍌','🍇','🌼','🌴'];
+for(let i=0,n=0;i<1500&&n<t.trees;i++){const x=80+rnd()*(t.w-160),y=200+rnd()*(t.h-300);if(mp.isPointInFill(new DOMPoint(x,y))&&P.every(p=>Math.hypot(p.x-x,p.y-y)>70)){n++;const w=40+rnd()*16;it.push({y,s:`<use href="#tree" x="${x-w/2}" y="${y-w}" width="${w}" height="${w}"/>`});if(n%3==0)it.push({y:y+9,s:`<text x="${x+28}" y="${y+9}" font-size="30">${DEC[n%DEC.length]}</text>`})}}
+CURP=P;let po='';P.forEach(p=>{const a=p.a,sy=SYM[a.id]||TS[a.k]||'house',v=!!S.v['m_'+a.id],z=BIG[a.id]?54:46,nm=a.n.split(' (')[0],big=!!BIG[a.id]||a.pr<=1;po+=`<g class="p${v?' v':''}${big?'':' mn'}" data-k="${a.id}" transform="translate(${p.x} ${p.y})"><g class="sc"><ellipse cy="-2" rx="${z*.45}" ry="${z*.08}" fill="#fff" opacity=".6"/><use href="#${sy}" x="${-z/2}" y="${-z}" width="${z}" height="${z}" filter="url(#shd)"/><g transform="translate(${z*.36} ${-z*.9})"><circle class="bc" r="9" stroke="#d4a017" stroke-width="2.5"/><text class="bt" y="4" text-anchor="middle">${v?'✔':'+'}</text></g><text class="nm${big?' bg':''}" y="15" text-anchor="middle">${esc(nm)}</text></g></g>`});
+it.sort((A,B)=>A.y-B.y);s+=it.map(i=>i.s).join('')+po;
+const f=t.P(t.fer[0],t.fer[1]);s+=`<text class="nm bg" x="${f[0]}" y="${f[1]}" text-anchor="middle" style="font-size:26px">${t.fer[2]}</text>`;
+[['🐬',.12,.9],['🐳',.8,.07],['⛵',.9,.75],['⛵',.1,.15],['🐬',.55,.95]].forEach(([e,x,y])=>s+=`<text x="${x*t.w}" y="${y*t.h}" font-size="64">${e}</text>`);
+for(let i=0;i<3;i++)s+=`<ellipse cx="${rnd()*t.w}" cy="${220+rnd()*t.h*.6}" rx="${90+rnd()*60}" ry="26" fill="#fff" opacity=".35"/>`;
+s+=`<rect x="16" y="16" width="${t.w-32}" height="${t.h-32}" rx="30" fill="none" stroke="#0d5c73" stroke-width="28"/><rect x="16" y="16" width="${t.w-32}" height="${t.h-32}" rx="30" fill="none" stroke="#ffc94d" stroke-width="8" stroke-dasharray="3 30" stroke-linecap="round"/>`;
+return`<g id="ig">${s}</g>`}
+const el=document.createElement('div');el.id='il';el.innerHTML=`<svg id="is">${DEFS}</svg><div id="ih"><h2 id="itl"></h2><small id="isb"></small><small id="ipg"></small><div id="itb"></div></div><div id="ic"><button id="iz">+</button><button id="im">−</button><button id="ir">⟲</button><button id="iv" title="Mapa 3D">🗺</button><button id="ix">✕</button></div><div id="ik"><button id="kx">✕</button><div id="kc"></div></div>`;document.body.appendChild(el);
+const SV=$('is');
+const ap=()=>{const r=SV.getBoundingClientRect(),t=R[cur],hh=$('ih').offsetHeight*.5,W=t.w*k,Hh=t.h*k;tx=W<=r.width?(r.width-W)/2:Math.min(0,Math.max(r.width-W,tx));ty=Hh<=r.height?(r.height-Hh)/2:Math.min(hh,Math.max(r.height-Hh,ty));$('ig').setAttribute('transform',`translate(${tx} ${ty}) scale(${k})`);SV.classList.toggle('z2',k/k0>2.4);SV.querySelectorAll('.p>.sc').forEach(g=>g.setAttribute('transform',`scale(${1/k})`))};
+const prog=()=>{const q=ids(cur);$('ipg').textContent=`✔ ${q.filter(a=>S.v['m_'+a.id]).length}/${q.length} aqui`};
+const fit=()=>{const r=SV.getBoundingClientRect(),t=R[cur],hh=$('ih').offsetHeight+6;k0=Math.min(r.width/t.w,(r.height-hh)/t.h)*.98;k=k0*(r.width<600?1.8:1.2);const P=ids(cur).map(a=>t.P(a.lon,a.lat)),cx=P.reduce((a,p)=>a+p[0],0)/P.length,cy=P.reduce((a,p)=>a+p[1],0)/P.length;tx=r.width/2-cx*k;ty=hh+(r.height-hh)/2-cy*k;ap()};
+const zoom=(f,cx,cy)=>{const n=Math.max(k0*.8,Math.min(k0*14,k*f));f=n/k;tx=cx-(cx-tx)*f;ty=cy-(cy-ty)*f;k=n;ap()};
+function view(key){cur=key;SV.querySelector('#ig')?.remove();SV.insertAdjacentHTML('beforeend',build(key));$('itl').textContent=R[key].n;$('isb').textContent=R[key].sb;[...$('itb').children].forEach(b=>b.classList.toggle('on',b.dataset.i==key));$('ik').classList.remove('o');fit();prog()}
+function card(id){const a=BY[id],v=!!S.v['m_'+id];$('kc').innerHTML=`<h3>${a.em} ${esc(a.n)}</h3><b>${a.tp}</b><p>${esc(a.d)}</p>${H[id]?`<p><b>Como chegar:</b> ${esc(H[id])}</p>`:''}<button class="vbtn${v?' v':''}" data-k="${id}">${v?'✔ Já visitei':'☐ Marcar como visitado'}</button><button class="vbtn g" data-m="${id}">🗺 Ver no mapa 3D</button>`;$('ik').classList.add('o')}
+$('kc').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.m){e.stopPropagation();el.classList.remove('o');const a=BY[b.dataset.m];map&&map.flyTo({center:[a.lon,a.lat],zoom:15,pitch:62,bearing:-20,duration:2500});return}const q=b.dataset.k;S.v['m_'+q]=!S.v['m_'+q];save();if(BY[q].e)BY[q].e.classList.toggle('vis',!!S.v['m_'+q]);card(q);prog();SV.querySelector(`.p[data-k="${q}"]`).classList.toggle('v',!!S.v['m_'+q]);SV.querySelector(`.p[data-k="${q}"] .bt`).textContent=S.v['m_'+q]?'✔':'+'};
+$('kx').onclick=()=>$('ik').classList.remove('o');
+$('itb').innerHTML=Object.keys(R).map(i=>`<button data-i="${i}">${R[i].n}</button>`).join('');$('itb').onclick=e=>{if(e.target.dataset.i)view(e.target.dataset.i)};
+const open=()=>{el.classList.add('o');view(cur)};$('ix').onclick=()=>el.classList.remove('o');$('ir').onclick=fit;
+$('iz').onclick=()=>zoom(1.5,innerWidth/2,innerHeight/2);$('im').onclick=()=>zoom(1/1.5,innerWidth/2,innerHeight/2);
+$('iv').onclick=()=>{el.classList.remove('o');map&&map.flyTo(cur=='ps'?{center:[-16.34,33.06],zoom:12,pitch:60,bearing:-15,duration:2500}:{center:[-16.96,32.76],zoom:9.4,pitch:60,bearing:-15,duration:2500})};
+SV.onwheel=e=>{e.preventDefault();zoom(Math.exp(-e.deltaY*.002),e.clientX,e.clientY)};
+const pt=new Map();let pd=0,dn=null;SV.onpointerdown=e=>{dn={x:e.clientX,y:e.clientY,t:e.target};SV.setPointerCapture(e.pointerId);pt.set(e.pointerId,[e.clientX,e.clientY]);if(pt.size==2){dn=null;const[a,b]=[...pt.values()];pd=Math.hypot(a[0]-b[0],a[1]-b[1])}};
+SV.onpointermove=e=>{if(!pt.has(e.pointerId))return;const o=pt.get(e.pointerId);pt.set(e.pointerId,[e.clientX,e.clientY]);if(pt.size==2){const[a,b]=[...pt.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]);zoom(d/pd,(a[0]+b[0])/2,(a[1]+b[1])/2);pd=d}else{tx+=e.clientX-o[0];ty+=e.clientY-o[1];ap()}};
+SV.onpointerup=e=>{pt.delete(e.pointerId);if(dn&&Math.hypot(e.clientX-dn.x,e.clientY-dn.y)<7){const g=dn.t.closest&&dn.t.closest('.p');if(g)card(g.dataset.k)}dn=null};SV.onpointercancel=e=>pt.delete(e.pointerId);
+addEventListener('resize',()=>el.classList.contains('o')&&fit());
+// música: bailinho original em estilo madeirense (cordas dedilhadas, compasso 6/8), gerado aqui
+{const sr=16000,F=n=>392*Math.pow(2,n/12),ee=.19;
+const MB=[[[7,1],[9,1],[11,1],[12,3]],[[11,1],[9,1],[7,1],[9,3]],[[4,1],[7,1],[11,1],[9,1],[7,1],[4,1]],[[2,3],[7,3]],[[12,1],[11,1],[12,1],[14,3]],[[12,1],[11,1],[9,1],[11,3]],[[9,1],[7,1],[4,1],[2,1],[4,1],[2,1]],[[0,6]]],CD=[[0,4,7],[-5,-1,2],[-3,0,4],[-5,-1,2],[0,4,7],[-7,-3,0],[-5,-1,2],[0,4,7]];
+const synth=()=>{const KS=[0,2],bar=6*ee,N=Math.ceil(KS.length*8*bar*sr)+sr,d=new Float32Array(N);
+const pl=(t,n,len,am,dc)=>{const s0=Math.floor(t*sr),L=len*sr|0,w0=6.2832*F(n);for(let i=0;i<L&&s0+i<N;i++){const x=i/sr,e=Math.exp(-x*dc)*Math.min(1,x*300),p=w0*x;d[s0+i]+=am*e*(Math.sin(p)+.5*Math.sin(2*p)+.25*Math.sin(3*p))}};
+KS.forEach((q,ki)=>MB.forEach((m,b)=>{const t0=(ki*8+b)*bar;let c=0;m.forEach(([n,bt])=>{pl(t0+c*ee,n+q,Math.min(bt*ee*1.6,.7),.3,5);if(ki)pl(t0+c*ee,n+q+12,.3,.08,7);c+=bt});const ch=CD[b];[0,3].forEach(i=>pl(t0+i*ee,ch[0]+q-12,.35,.28,6));[1,2,4,5].forEach(i=>ch.forEach((n,j)=>pl(t0+i*ee+j*.012,n+q,.2,.07,12)))}));
+let mx=.01;for(let i=0;i<N;i++)mx=Math.max(mx,Math.abs(d[i]));for(let i=0;i<N;i++)d[i]/=mx*1.1;return d};
+const wav=()=>{const d=synth(),N=d.length,o=new DataView(new ArrayBuffer(44+N*2)),w=(p,s)=>[...s].forEach((c,i)=>o.setUint8(p+i,c.charCodeAt(0)));w(0,'RIFF');o.setUint32(4,36+N*2,true);w(8,'WAVEfmt ');o.setUint32(16,16,true);o.setUint16(20,1,true);o.setUint16(22,1,true);o.setUint32(24,sr,true);o.setUint32(28,sr*2,true);o.setUint16(32,2,true);o.setUint16(34,16,true);w(36,'data');o.setUint32(40,N*2,true);for(let i=0;i<N;i++)o.setInt16(44+i*2,Math.max(-1,Math.min(1,d[i]))*30000,true);return new Blob([o],{type:'audio/wav'})};
+let au=null,on=false;const bs=[],set=v=>{on=v;bs.forEach(b=>b.classList.toggle('on',v))};
+const tgl=()=>{if(on){au&&au.pause();set(false);return}if(!au){au=new Audio();au.loop=true;au.volume=.6;au.src=URL.createObjectURL(wav())}const p=au.play();set(true);if(p&&p.catch)p.catch(()=>{set(false);alert('Não foi possível tocar o som. Verifica o volume e tenta outra vez.')})};
+const inp=document.createElement('input');inp.type='file';inp.accept='audio/*';inp.style.display='none';document.body.appendChild(inp);inp.onchange=()=>{const f=inp.files[0];if(!f)return;if(!au)au=new Audio();au.loop=true;au.src=URL.createObjectURL(f);au.play().then(()=>set(true)).catch(()=>alert('Não foi possível tocar este ficheiro.'))};
+const add=(par,bf)=>{[['🎵','Bailinho da Madeira',()=>window.__bgm(0)],['🎧','A Mula da Cooperativa',()=>window.__bgm(1)],['📂','Tocar um ficheiro meu',()=>inp.click()]].forEach(([t,ti,fn],i)=>{const b=document.createElement('button');b.textContent=t;b.title=ti;b.setAttribute('aria-label',ti);b.onclick=fn;bf?par.insertBefore(b,bf):par.appendChild(b);if(!i)bs.push(b)})};
+add($('ic'),$('ix'));const tl=document.querySelector('#mw .tools'),ib=document.createElement('button');ib.textContent='🎨';ib.title='Mapa ilustrado';ib.onclick=open;tl.appendChild(ib);add(tl)}
+})();
+</script><script>
+/* ---- separador Planear: tempo, sol, plano B, entradas, tempos de condução, offline ---- */
+(()=>{
+const row=(a,b,c)=>`<div class="pc"><div><div class="pn">${a}</div>${b?`<div class="pd">${b}</div>`:''}</div>${c?`<span class="pp">${c}</span>`:''}</div>`;
+const PB=[['Dia 1 · Funchal','Museu CR7, Blandy\'s Wine Lodge (visita e prova), Sé do Funchal, Fortaleza de São Tiago, Mercado dos Lavradores (coberto), Casino da Madeira à noite.'],['Dia 2 · Costa Sul & Oeste','Engenhos da Calheta (rum e poncha), Cabo Girão (se a nuvem baixar, a vista pode perder-se), almoço longo em Ponta do Sol ou Ribeira Brava; Porto Moniz só com mar calmo e sem chuva forte.'],['Dia 3 · Norte & Montanhas','Se o Arieiro estiver em nuvem: Jardins do Palheiro, Monte Palace, oficinas de vime na Camacha, viveiros de truta no Ribeiro Frio. Evitar levadas com chuva forte.'],['Dia 4 · Funchal e regresso','Com chuva: Museu CR7, Fortaleza de São Tiago, Sé do Funchal e almoço calmo. Reservar o transfer para o aeroporto com antecedência.']];
+const EN=[['✔ Teleférico Funchal–Monte','8h45–17h45, todos os dias exceto 25 dez · e-ticket válido 60 dias · 7–14 anos −50%, 0–6 grátis','22€ ida e volta · 16€ só ida'],['✔ Monte Palace Tropical Garden','9h–19h, todos os dias exceto 25 dez (Turismo da Madeira) · preço não confirmado: ~10–15€, ver montepalace.com',''],['ℹ️ Museu CR7','~10h–18h todos os dias (fonte secundária) · o museu foi ampliado: confirmar preço','~5–6€ (guias antigos)'],['ℹ️ Museu da Baleia (Caniçal)','Terça a domingo ~10h–18h (fonte secundária)','~10–12€'],['ℹ️ Carros de cesto do Monte','~9h–18h · muitas vezes só dinheiro','~30€ por carro (2 pessoas)'],['❓ Cabo Girão Skywalk','Não verificado','~2€ (estimativa)'],['❓ Blandy\'s Wine Lodge','Não verificado · visitas com marcação','~12–20€ (estimativa)'],['❓ Jardim Botânico / Jardins do Palheiro','Não verificado','~10–12€ (estimativa)'],['Mercado dos Lavradores','Manhã; seg–sáb','Grátis']];
+const DR=[['Funchal → Aeroporto','~25 min'],['Funchal → Monte','~15 min'],['Funchal → Câmara de Lobos','~15 min'],['Funchal → Cabo Girão','~25 min'],['Funchal → Ribeira Brava','~30 min'],['Funchal → Ponta do Sol','~40 min'],['Funchal → Calheta','~55 min'],['Funchal → Porto Moniz','~1h15–1h30'],['Funchal → São Vicente','~50 min–1h'],['Funchal → Santana','~50 min'],['Santana → Ribeiro Frio','~25 min'],['Ribeiro Frio → Pico do Arieiro','~30 min'],['Pico do Arieiro → Camacha','~35 min'],['Funchal → Curral das Freiras','~30 min'],['Funchal → Machico','~30 min'],['Funchal → Caniçal / São Lourenço','~40 min']];
+const html=`<div class="panel" id="planear"><h2>Planear & imprevistos</h2><p class="lead">Previsão, luz do dia, plano B para chuva, entradas e tempos de condução. Valores indicativos: confirmem antes de ir.</p>
+<div class="blk"><h3>🌦️ Previsão por zona</h3><div id="wx"><p class="lead">A carregar a previsão…</p></div><div class="note">Fonte: Open-Meteo. Para avisos oficiais usem o <a target="_blank" rel="noopener" href="https://www.ipma.pt">IPMA</a>. Nas montanhas o tempo muda em minutos.</div></div>
+<div class="blk"><h3>🌅 Luz do dia no Funchal</h3><div class="pl" id="sun"></div><div class="note">Anoitece cedo: planeiem miradouros e levadas para antes do fim da tarde. Levem lanterna para túneis de levada.</div></div>
+<div class="blk"><h3>☔ Plano B se chover ou houver nevoeiro</h3><div class="pl">${PB.map(r=>row(r[0],r[1])).join('')}</div></div>
+<div class="blk"><h3>🎟️ Entradas: horários e preços (indicativo)</h3><div class="pl">${EN.map(r=>row(r[0],r[1]+' · '+r[3],r[2])).join('')}</div><div class="note">✔ confirmado em site oficial a 10 nov 2026 · ℹ️ fonte secundária · ❓ estimativa não verificada. Confirmem sempre antes de ir.</div></div>
+<div class="blk"><h3>🚗 Tempos de condução (aprox.)</h3><div class="pl">${DR.map(r=>row(r[0],'',r[1])).join('')}</div><div class="note">Somem 15–20 min por troço de montanha e por trânsito à saída do Funchal.</div></div>
+<div class="blk"><h3>📴 Sem rede / offline</h3><ul><li>Abram esta página no telemóvel antes de ir e adicionem ao ecrã inicial.</li><li>No Google Maps: descarregar o mapa offline da Madeira.</li><li>Tirem captura de ecrã de bilhetes, reservas, morada do alojamento e contrato do carro.</li><li>O mapa 3D precisa de internet; os roteiros, listas e notas funcionam sem rede.</li></ul></div></div>`;
+$('pratico').insertAdjacentHTML('beforebegin',html);
+const b=document.createElement('button');b.className='tab';b.dataset.p='planear';b.textContent='Planear';$('tabs').insertBefore(b,$('tabs').querySelector('[data-p=pratico]'));
+// sol (equação do nascer/pôr do sol), hora de Madeira
+const sun=(y,m,d,lat,lon)=>{const r=Math.PI/180,JD=Date.UTC(y,m-1,d)/864e5+2440587.5,n=Math.round(JD-2451545+.0008),J=n-lon/360,M=(357.5291+.98560028*J)%360,C=1.9148*Math.sin(M*r)+.02*Math.sin(2*M*r)+.0003*Math.sin(3*M*r),L=(M+C+180+102.9372)%360,T=2451545+J+.0053*Math.sin(M*r)-.0069*Math.sin(2*L*r),dl=Math.asin(Math.sin(L*r)*Math.sin(23.44*r)),w=Math.acos((Math.sin(-.833*r)-Math.sin(lat*r)*Math.sin(dl))/(Math.cos(lat*r)*Math.cos(dl)))/r/360;return[T-w,T+w]};
+const fm=J=>new Date((J-2440587.5)*864e5).toLocaleTimeString('pt-PT',{timeZone:'Atlantic/Madeira',hour:'2-digit',minute:'2-digit'});
+$('sun').innerHTML=[12,13,14,15].map(d=>{const[a,c]=sun(2026,11,d,32.65,-16.92),h=(c-a)*24;return row(`${d} nov`,`Nascer ${fm(a)} · Pôr do sol ${fm(c)}`,`${Math.floor(h)}h${String(Math.round((h%1)*60)).padStart(2,'0')} de luz`)}).join('');
+// previsão
+const Z=[['Funchal',32.65,-16.91],['Porto Moniz',32.87,-17.17],['Santana',32.80,-16.88],['Pico do Arieiro',32.735,-16.93]];
+const ic=c=>c==0?'☀️':c<3?'⛅':c<4?'☁️':c<50?'🌫️':c<70?'🌧️':c<80?'🌨️':c<95?'🌦️':'⛈️';
+const wd=['dom','seg','ter','qua','qui','sex','sáb'];
+Promise.all(Z.map(z=>fetch(`https://api.open-meteo.com/v1/forecast?latitude=${z[1]}&longitude=${z[2]}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=Europe%2FLisbon&start_date=2026-11-12&end_date=2026-11-15`).then(r=>r.json()))).then(R=>{
+$('wx').innerHTML=Z.map((z,i)=>{const d=R[i].daily;return `<h4>${z[0]}</h4><div class="pl">`+d.time.map((t,j)=>row(`${ic(d.weathercode[j])} ${wd[new Date(t+'T12:00').getDay()]} ${t.slice(8)} nov`,`Chuva ${d.precipitation_probability_max[j]??'—'}% · vento até ${Math.round(d.wind_speed_10m_max[j])} km/h`,`${Math.round(d.temperature_2m_min[j])}–${Math.round(d.temperature_2m_max[j])}°C`)).join('')+'</div>'}).join('')}).catch(()=>{$('wx').innerHTML='<p class="lead">Sem ligação à previsão. Consultem o IPMA.</p>'});
+})();
+</script><script>
+/* ---- separador Grupo: voos, alojamento, carro e despesas ---- */
+(()=>{S.info=S.info||{};S.gx=S.gx||{people:'',list:[]};
+const F=[['voo1','Voo de ida (nº, hora)'],['voo2','Voo de volta (nº, hora)'],['alo','Alojamento (nome)'],['aloM','Morada do alojamento'],['aloT','Telefone do alojamento'],['aloR','Check-in / check-out e nº de reserva'],['car','Empresa do carro e nº de reserva'],['carT','Telefone de assistência do carro']];
+const html=`<div class="panel" id="grupo"><h2>Grupo: reservas e despesas</h2><p class="lead">Fica guardado neste aparelho. Para partilhar, copiem o resumo e enviem por mensagem.</p>
+<div class="blk"><h3>✈️ Voos, alojamento e carro</h3>${F.map(x=>`<label class="lead" style="display:block;margin:8px 0 3px">${x[1]}</label><input class="sel" data-i="${x[0]}" value="${esc(S.info[x[0]]||'')}">`).join('')}</div>
+<div class="blk"><h3>💶 Despesas do grupo</h3><label class="lead" style="display:block;margin:4px 0 3px">Pessoas (separadas por vírgula)</label><input class="sel" id="gp" placeholder="Ana, Rui, Inês…" value="${esc(S.gx.people)}">
+<input class="sel" id="gd" placeholder="Descrição (ex.: combustível)"><input class="sel" id="gv" type="number" step="0.01" placeholder="Valor em €"><select class="sel" id="gw"></select><button class="tab on" id="ga" style="width:100%">+ Adicionar despesa</button>
+<div id="gl" style="margin-top:12px"></div><div id="gb"></div></div></div>`;
+$('pratico').insertAdjacentHTML('beforebegin',html);
+const b=document.createElement('button');b.className='tab';b.dataset.p='grupo';b.textContent='Grupo';$('tabs').insertBefore(b,$('tabs').querySelector('[data-p=pratico]'));
+document.querySelectorAll('#grupo [data-i]').forEach(i=>i.oninput=()=>{S.info[i.dataset.i]=i.value;save()});
+const P=()=>$('gp').value.split(',').map(x=>x.trim()).filter(Boolean),eur=n=>n.toFixed(2).replace('.',',')+'€';
+function r(){const p=P();S.gx.people=$('gp').value;save();$('gw').innerHTML=p.map(x=>`<option>${esc(x)}</option>`).join('')||'<option value="">Quem pagou?</option>';
+$('gl').innerHTML=S.gx.list.length?'<div class="pl">'+S.gx.list.map((e,i)=>`<div class="pc"><div><div class="pn">${esc(e.d)}</div><div class="pd">Pago por ${esc(e.w)}</div></div><span class="pp">${eur(e.v)}</span><span class="ck" data-x="${i}" style="border-color:#c3564f;color:#c3564f">×</span></div>`).join('')+'</div>':'';
+if(!p.length||!S.gx.list.length){$('gb').innerHTML='';return}
+const tot=S.gx.list.reduce((a,e)=>a+e.v,0),sh=tot/p.length,bal={};p.forEach(x=>bal[x]=-sh);S.gx.list.forEach(e=>{if(e.w in bal)bal[e.w]+=e.v});
+const cr=p.filter(x=>bal[x]>.005).map(x=>[x,bal[x]]).sort((a,c)=>c[1]-a[1]),db=p.filter(x=>bal[x]<-.005).map(x=>[x,-bal[x]]).sort((a,c)=>c[1]-a[1]),t=[];
+while(cr.length&&db.length){const m=Math.min(cr[0][1],db[0][1]);t.push(`${esc(db[0][0])} paga ${eur(m)} a ${esc(cr[0][0])}`);cr[0][1]-=m;db[0][1]-=m;if(cr[0][1]<.005)cr.shift();if(db[0][1]<.005)db.shift()}
+$('gb').innerHTML=`<div class="note"><b>Total ${eur(tot)} · ${eur(sh)} por pessoa</b>${t.length?'<br>'+t.join('<br>'):'<br>Tudo acertado.'}</div>`}
+$('gp').oninput=r;$('ga').onclick=()=>{const d=$('gd').value.trim(),v=parseFloat($('gv').value),w=$('gw').value;if(!d||!(v>0)||!w){alert('Indiquem as pessoas, a descrição, o valor e quem pagou.');return}S.gx.list.push({d,v,w});$('gd').value='';$('gv').value='';r()};
+$('gl').onclick=e=>{const x=e.target.closest('[data-x]');if(x){S.gx.list.splice(+x.dataset.x,1);r()}};r();
+})();
+</script><script>
+/* ---- fotos, separador Extras: saúde e glossário madeirense ---- */
+(()=>{const W=n=>'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(n)+'?width=900';
+const img=(n,alt)=>`<img class="dp" loading="lazy" alt="${alt}" src="${W(n)}" onerror="this.remove()">`;
+[['d1','Cable car to Monte, Madeira - Jan 2012 - 02.jpg','Teleférico do Funchal ao Monte'],['d2','20211122.Madeira.Cabo Girão.-011.jpg','Cabo Girão'],['d3','Pico do Arieiro, Madeira - panoramio.jpg','Pico do Arieiro']].forEach(([id,n,a])=>{const h=document.querySelector('#'+id+'>h2');if(h)h.insertAdjacentHTML('beforebegin',img(n,a))});
+const v=document.querySelector('#ver>h2');if(v)v.insertAdjacentHTML('afterend',`<div class="pg2"><img loading="lazy" alt="Porto Moniz" src="${W('048 Porto Moniz volcanic pools.jpg')}" onerror="this.remove()"><img loading="lazy" alt="Santana" src="${W('Casas tipicas de Santana (9).jpg')}" onerror="this.remove()"></div>`);
+const row=(a,b,c)=>`<div class="pc"><div><div class="pn">${a}</div>${b?`<div class="pd">${b}</div>`:''}</div>${c||''}</div>`;
+const Z=['Funchal','Câmara de Lobos','Ribeira Brava','Ponta do Sol','Calheta','Porto Moniz','São Vicente','Santana','Machico','Santa Cruz','Camacha'];
+const G=[['Poncha','Aguardente de cana, mel e sumo de limão, laranja ou maracujá.'],['Espetada','Carne de vaca em espeto de loureiro, grelhada e servida a pender.'],['Bolo do caco','Pão achatado cozido em pedra, com manteiga de alho.'],['Milho frito','Cubos de papa de milho fritos, acompanhamento da espetada.'],['Peixe-espada preto','Peixe de águas fundas, muitas vezes com banana frita.'],['Lapas','Moluscos grelhados com limão e alho.'],['Carne de vinha d\'alhos','Carne de porco marinada em vinho e alho.'],['Sopa de tomate e cebola','Sopa tradicional com ovo escalfado.'],['Bolo de mel de cana','Bolo escuro e denso, típico do Natal.'],['Vinho Madeira','Estilos Sercial (seco), Verdelho, Boal e Malvasia (doce).'],['Nikita','Cocktail de cerveja com gelado de ananás.'],['Levada / vereda / fajã','Canal de rega que vira trilho / caminho de montanha / terreno plano junto ao mar.'],['Carreiros','Condutores dos carros de cesto do Monte.']];
+const html=`<div class="panel" id="extras"><h2>Extras: saúde e glossário</h2>
+<div class="blk"><h3>🏥 Saúde e emergência</h3><div class="pl">${row('Emergência','Número único europeu','<span class="pp">112</span>')}${row('SNS 24','Aconselhamento de saúde por telefone','<span class="pp">808 24 24 24</span>')}${row('Hospital Dr. Nélio Mendonça (urgências)','Av. Luís de Camões, Funchal',`<a target="_blank" rel="noopener" href="${gl('Hospital Dr. Nélio Mendonça, Funchal')}">Abrir ↗</a>`)}</div>
+<h4>Centros de saúde e farmácias por zona</h4><div class="pl">${Z.map(z=>row(z,'',`<a target="_blank" rel="noopener" href="${gl('Centro de Saúde '+z+', Madeira')}">Centro ↗</a> <a target="_blank" rel="noopener" href="${gl('Farmácia '+z+', Madeira')}" style="margin-left:8px">Farmácia ↗</a>`)).join('')}</div>
+<div class="note">As farmácias de serviço mudam por dia: confirmem na porta da farmácia mais próxima ou pesquisem "farmácias de serviço" da zona. Levem o Cartão Europeu de Seguro de Doença ou o cartão de utente, se aplicável.</div></div>
+<div class="blk"><h3>🍴 Glossário madeirense</h3><div class="pl">${G.map(g=>row(g[0],g[1])).join('')}</div></div></div>`;
+$('pratico').insertAdjacentHTML('beforebegin',html);
+const b=document.createElement('button');b.className='tab';b.dataset.p='extras';b.textContent='Extras';$('tabs').insertBefore(b,$('tabs').querySelector('[data-p=pratico]'));
+})();
+</script><script>
+const BGM=[['Bailinho da Madeira','audio/bailinho-madeira.m4a'],['A Mula da Cooperativa','audio/mula-cooperativa.m4a']];
+(()=>{const A=new Audio();A.loop=true;let cur=-1;
+const upd=()=>document.querySelectorAll('.bgm').forEach(b=>{const i=+b.dataset.t,on=cur==i&&!A.paused;b.classList.toggle('on',on);b.textContent=(on?'⏸ ':'▶ ')+BGM[i][0]});
+window.__bgm=i=>{if(cur==i&&!A.paused){A.pause();upd();return}if(cur!=i){A.src=BGM[i][1];cur=i}A.play().then(upd).catch(()=>alert('Não foi possível tocar o som. Verifica o volume e tenta outra vez.'));upd()};
+A.onpause=A.onplay=upd;
+const blk=`<div class="blk" style="margin:0 0 14px"><h3 style="font-size:15px">🎵 Banda sonora da viagem</h3><button class="bgm" data-t="0"></button><button class="bgm" data-t="1"></button></div>`;
+['d1','d2','d3','d4'].forEach(id=>{const t=document.querySelector('#'+id+' .tl');if(t)t.insertAdjacentHTML('beforebegin',blk)});
+document.addEventListener('click',e=>{const b=e.target.closest('.bgm');if(b)window.__bgm(+b.dataset.t)});upd();})();
+</script><script>
+(()=>{const row=(a,b)=>`<div class="pc"><div><div class="pn">${a}</div><div class="pd">${b}</div></div></div>`;
+const L=[['Transporte','12 pessoas = 2 carrinhas de 9 lugares (8 passageiros + condutor) ou 3 carros. Reservem cedo: carrinhas esgotam. Definam 2 a 3 condutores e quem não bebe.'],['Bagagem','Duas carrinhas cheias de pessoas têm pouco espaço para malas: confirmem a bagagem ao reservar.'],['Dois carros, um grupo','Partilhem a localização no WhatsApp, combinem pontos de encontro e horas fixas, e façam as paragens ao mesmo tempo.'],['Restaurantes','Reservem mesa para 12 em todos os jantares e almoços grandes. Alguns locais só aceitam grupos com menu fechado: perguntem. Peçam pratos para partilhar (espetada).'],['Entradas e atividades','Perguntem por tarifa de grupo (teleférico, Monte Palace, Skywalk) e reservem. Carros de cesto: 2 pessoas por cesto, ou seja 6 cestos.'],['Levadas','Grupos grandes devem caminhar juntos, com alguém na frente e outro no fim. Levem lanternas e confirmem se o percurso precisa de reserva.'],['Alojamento','Verifiquem camas, casas de banho e estacionamento para 2 viaturas; check-in a 12 de novembro e check-out a 15.'],['Dinheiro','Usem o registo de despesas do separador Grupo: ele divide por 12 e diz quem paga a quem.'],['Se alguém se separar','Combinem de antemão um ponto de encontro e o plano B (por exemplo o alojamento), e guardem os contactos de todos.']];
+const h=`<div class="blk"><h3>👥 Logística para 12 pessoas</h3><div class="pl">${L.map(x=>row(x[0],x[1])).join('')}</div></div>`;
+const t=document.querySelector('#grupo .blk');if(t)t.insertAdjacentHTML('beforebegin',h)})();
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')==0)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script><script>
+/* ---- roteiro alternativo com crianças (o roteiro principal mantém-se nos separadores Dia 1–4) ---- */
+(()=>{const K=[
+['k1','Dia 1 · Qui 12','Funchal a pé, ritmo calmo',[
+['transport','9:00','Aterragem no aeroporto do Funchal','Peçam cadeirinhas ao transfer. Levem snacks, água e uma muda de roupa nas malas de mão.'],
+['transport','9:45','Aeroporto → Funchal','Transfer/minivans reservados com cadeirinhas (12 pessoas).'],
+['','10:30','Largar malas no alojamento','Se o quarto ainda não estiver pronto, peçam um espaço para as crianças descansarem.'],
+['','11:00','Parque de Santa Catarina ou Jardim Municipal','Espaço para brincar depois da viagem. Confirmar horário.'],
+['food','12:15','Almoço cedo (12h15)','Zona Velha: peçam meias doses, bolo do caco e sopa.'],
+['','13:30','Descanso / sesta no alojamento','Os mais pequenos precisam de pausa; adultos a descansar também.'],
+['','15:30','🚡 Teleférico ao Monte e jardins','Crianças 0–6 anos grátis (confirmado no site oficial). Monte Palace: lagos e jardins, ~1h.'],
+['','17:15','Descer de teleférico','Último bilhete às 17h45. Anoitece às 18h09.'],
+['','18:00','Marina ao pôr do sol','Passeio curto, perto do alojamento.'],
+['food','19:15','Jantar cedo','Reservar mesa para 12 com cadeiras altas para os mais pequenos.']]],
+['k2','Dia 2 · Sex 13','Costa Sul · com carro · menos estrada',[
+['transport','9:00','Levantamento do carro','Confirmar as cadeirinhas instaladas e fixas antes de sair (2 carrinhas de 9 lugares ou 3 carros).'],
+['transport','9:45','Funchal → Câmara de Lobos','~15 min. Porto de pescadores, pausa para fotos.'],
+['','10:30','🌊 Cabo Girão — Skywalk','Crianças sempre pela mão, junto às grades.'],
+['transport','11:45','→ Ribeira Brava','~20 min. Paredão e pausa de pernas.'],
+['food','12:15','Almoço cedo','Ribeira Brava ou Ponta do Sol. Peçam meias doses.'],
+['transport','13:30','Regresso ao Funchal','~35 min pela via rápida. As crianças podem dormir no carro.'],
+['','14:15','Descanso no alojamento','Sesta e tempo livre.'],
+['','15:45','Jardins do Palheiro ou Parque de Santa Catarina','Relvados para correr. Confirmar horário e preço do Palheiro.'],
+['food','18:45','Jantar cedo','Sem pressa e perto do alojamento.']]],
+['k3','Dia 3 · Sáb 14','Santana, truta e devolução do carro',[
+['','9:00','Pequeno-almoço sem pressa','Sem subir ao Arieiro: frio e vento para crianças de 3 anos.'],
+['transport','9:30','Funchal → Santana','~50 min por via rápida. Paragem a meio se houver enjoo.'],
+['','10:30','Parque Temático da Madeira (Santana)','Pensado para famílias. Confirmar horário e preço.'],
+['food','12:15','Almoço cedo em Santana','Meias doses e comida simples.'],
+['','13:30','🏠 Casas de colmo','Visita curta com fotos.'],
+['transport','14:15','Santana → Ribeiro Frio','~25 min.'],
+['','15:00','Viveiros de truta do Ribeiro Frio','Ver os peixes e um passeio plano curto, sem levadas com precipício.'],
+['transport','15:45','→ Funchal','~35 min. Abastecer.'],
+['transport','17:00','Devolução do carro','A devolução é às 19h00: ficam 2h de folga.'],
+['food','18:30','Jantar cedo','Sábado: reservar para 12.']]],
+['k4','Dia 4 · Dom 15','Funchal a pé e regresso',[
+['','8:30','Pequeno-almoço & check-out','Malas guardadas no alojamento.'],
+['','9:30','Jardim Municipal / Parque de Santa Catarina','Brincar ao ar livre antes do voo.'],
+['','10:45','Marina e Museu CR7','Visita curta. Confirmar horário ao domingo.'],
+['food','12:00','Almoço final cedo','Zona Velha ou marina.'],
+['','12:45','Descanso e malas','Preparar snacks e brinquedos para o voo.'],
+['transport','13:45','Funchal → Aeroporto','Transfer/minivans com cadeirinhas, reservado.'],
+['','14:30','Aeroporto','Check-in com folga.'],
+['','16:40','✈️ Descolagem','Bom regresso!']]]];
+const tips=['Cadeirinhas: crianças com menos de 12 anos e menos de 135 cm precisam de cadeirinha adequada. Peçam-nas ao rent-a-car e ao transfer.','Enjoo: paragens a cada 45–60 min, sacos e snacks leves. Perguntem na farmácia o que é seguro para a idade.','Pontos fracos para esta idade: levadas com precipício e o Pico do Arieiro. Se o dia estiver limpo, só o miradouro e com muito cuidado.','Comida: meias doses, bolo do caco, sopa e sumos tropicais. Poncha só para adultos.','Funchal tem ruas íngremes e calçada: levem porta-bebés ou carrinho leve.','Guardem a morada do hospital do Funchal e a medicação habitual das crianças.'];
+let h=`<div class="panel" id="criancas"><h2>👶 Roteiro alternativo com crianças</h2><p class="lead">Mais curto, com pausas e sestas. O roteiro principal continua nos separadores Dia 1–4.</p>
+<div class="blk"><h3>Dicas para crianças de 3 anos</h3><ul>${tips.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
+K.forEach(d=>{h+=`<h3 style="margin:16px 0 4px;font-family:Georgia,serif">${d[1]} · ${d[2]}</h3><div class="tl">`+d[3].map((a,i)=>{const id=d[0]+'-'+i,on=S.v[id];return `<div class="card ${a[0]}${on?' done':''}"><div class="r"><span class="t">${a[1]}</span><span class="ti">${esc(a[2])}</span><span class="ck${on?' on':''}" data-v="${id}" data-c="1">✓</span></div><p>${esc(a[3])}</p></div>`}).join('')+'</div>'});
+h+=`<div class="note">Horários e preços de Santana, jardins e Parque de Santa Catarina por confirmar. A devolução do carro continua a ser a 14 nov às 19h00.</div></div>`;
+$('ver').insertAdjacentHTML('beforebegin',h);
+const b=document.createElement('button');b.className='tab';b.dataset.p='criancas';b.textContent='👶 Crianças';$('tabs').insertBefore(b,$('tabs').querySelector('[data-p=ver]'));
+['d1','d2','d3','d4'].forEach(id=>{const t=document.querySelector('#'+id+' .tl');if(t)t.insertAdjacentHTML('beforebegin','<button class="gob" data-go="criancas" style="margin:0 0 12px">👶 Com crianças? Ver roteiro alternativo →</button>')});
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)document.querySelector('.tab[data-p='+g.dataset.go+']').click()});
+})();
+</script></body></html>
